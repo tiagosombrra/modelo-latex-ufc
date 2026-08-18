@@ -45,9 +45,12 @@ O template auxilia a composição; ele não substitui a conferência final das n
 A v1.1.2 é uma release de manutenção da linha `abntex2`/`memoir` antes da futura migração de plataforma.
 
 - opção pública de idioma atualizada de `brazil` para `brazilian`;
+- correção do espaçamento duplicado antes de `Fonte`/`Nota`, preservando o afastamento já fornecido pela composição do objeto;
 - preflight automatizado em GitHub Actions com TeX Live 2026;
 - `make preflight` passa a reconhecer explicitamente duas depreciações upstream inevitáveis do `abntex2` 1.9.7, sem liberar outros warnings;
 - versão do template atualizada nos arquivos principais e no `Makefile`.
+
+A correção de espaçamento remove afastamento vertical redundante e pode alterar a paginação de documentos que estejam no limite de uma página, sem modificar seu conteúdo textual.
 
 ### v1.1.1
 
@@ -369,7 +372,7 @@ O template não ativa tagging experimental por padrão. A prioridade atual é es
 
 ## Versões recentes
 
-- **1.1.2 — 18/08/2026:** compatibilidade com Babel atual e preflight automatizado em TeX Live 2026;
+- **1.1.2 — 18/08/2026:** compatibilidade com Babel atual, correção de espaçamento duplicado e preflight automatizado em TeX Live 2026;
 - **1.1.1 — 17/08/2026:** documentação, metadados de versão e alinhamento da política de objetos;
 - **1.1.0 — 17/08/2026:** normalização uniforme de espaçamento para objetos acadêmicos;
 - **1.0.0 — 16/08/2026:** primeira versão pública modernizada do repositório.
@@ -381,3 +384,11 @@ A modernização preserva a autoria, os créditos e a história do template UFC/
 Atualização normativa e técnica da série modernizada: **Tiago Guimarães Sombra (2026)**.
 
 O repositório é distribuído sob a **LaTeX Project Public License (LPPL) 1.3c**, conforme o arquivo `LICENSE`.
+
+## Referências institucionais
+
+- Normalização de trabalhos acadêmicos — Sistema de Bibliotecas da UFC: `https://biblioteca.ufc.br/pt/servicos-e-produtos/normalizacao-de-trabalhos-academicos/`
+- Templates — Sistema de Bibliotecas da UFC: `https://biblioteca.ufc.br/pt/servicos-e-produtos/templates/`
+- Normas para recebimento de teses e dissertações: `https://biblioteca.ufc.br/pt/normas-sibi/normas-para-o-recebimento-de-teses-e-dissertacoes/`
+
+O histórico detalhado das versões antigas do template permanece disponível no histórico Git e nos comentários preservados da base original.
