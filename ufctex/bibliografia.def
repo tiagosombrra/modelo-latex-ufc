@@ -295,7 +295,7 @@
   {
     \ufc_primary_section_break:
     \cs_if_exist:NT \phantomsection { \phantomsection }
-    \addcontentsline{toc}{section}{Referências}
+    \addcontentsline{toc}{section}{\protect\toclabelbox{}Referências}
     \begingroup
       \parindent=0pt
       \begin{center}

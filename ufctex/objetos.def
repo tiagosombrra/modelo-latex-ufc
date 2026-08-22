@@ -93,11 +93,18 @@
 \NewDocumentCommand \imprimirlistadealgoritmos { }
   { \ufc_pretextual_list:nn {Lista~de~Algoritmos} {\ufcstarttoc{loa}} }
 
+\cs_new_protected:Npn \ufc_listing_apply_number_margins:
+  {
+    \cs_if_eq:ccF { lst@PlaceNumber } { @empty }
+      { \lstset{xleftmargin=3em,xrightmargin=3em} }
+  }
+
 \cs_new_protected:Npn \ufc_objects_setup_listings:
   {
     \lstnewenvironment{ufclisting}[1][\placepos]
       {
         \let\medskipamount\smallskipamount
+        \ufc_listing_apply_number_margins:
         \place[##1]\vbox\bgroup
       }
       {
@@ -124,11 +131,33 @@
       { \begin{algorithmic} }
       {
         \int_compare:nNnTF {#1} > {0}
-          { \begin{algorithmic}[#1] }
+          {
+            \hbox to \linewidth\bgroup
+              \hfil
+              \vbox\bgroup
+                \hsize=\dimexpr\linewidth-6em\relax
+                \linewidth=\hsize
+                \begin{algorithmic}[#1]
+          }
           {
             \ClassError{ufctex}
               {Invalid~algorithm~line~numbering~frequency~'#1'}
               {Use~zero~for~no~line~numbers~or~a~positive~integer.}
+          }
+      }
+  }
+
+\cs_new_protected:Npn \ufc_algorithm_end:n #1
+  {
+    \int_compare:nNnTF {#1} = {0}
+      { \end{algorithmic} }
+      {
+        \int_compare:nNnT {#1} > {0}
+          {
+            \end{algorithmic}
+              \egroup
+              \hfil
+            \egroup
           }
       }
   }
@@ -142,7 +171,7 @@
         \ufc_algorithm_begin:n {##2}
       }
       {
-        \end{algorithmic}
+        \ufc_algorithm_end:n {##2}
         \egroup\endplace
       }
   }

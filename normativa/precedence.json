@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-08-22",
+  "description": "Política de resolução de vigência e precedência da base normativa UFCtex.",
+  "catalog_policy_mode": "replace-embedded-policy",
+  "principles": [
+    "Requisitos técnicos usam a edição vigente da norma técnica aplicável.",
+    "Atos e requisitos institucionais UFC vigentes governam matérias institucionais dentro de seu escopo.",
+    "Guias UFC complementam normas vigentes, mas não reativam edições técnicas substituídas.",
+    "Fontes superseded ou historical nunca governam uma regra ativa.",
+    "Conflitos não resolvidos retornam review-required e não podem alimentar validadores automáticos."
+  ],
+  "active_source_statuses": [
+    "current",
+    "current-with-superseded-norm-references",
+    "current-for-tabular-presentation"
+  ],
+  "inactive_source_statuses": [
+    "superseded",
+    "historical"
+  ],
+  "source_roles": {
+    "ufc-normalizacao-2026": "institutional-guidance",
+    "ufc-guia-trabalhos-2022": "institutional-guide",
+    "ufc-guia-citacoes-2025": "institutional-guide",
+    "ufc-in-2-2026": "institutional-act",
+    "ufc-deposito-tcc-2026": "institutional-requirement",
+    "ufc-deposito-pos-2026": "institutional-requirement",
+    "abnt-nbr-14724-2024": "technical-standard",
+    "abnt-nbr-10520-2023": "technical-standard",
+    "abnt-nbr-6023-2025": "technical-standard",
+    "abnt-nbr-15287-2025": "technical-standard",
+    "abnt-nbr-6028-2021": "technical-standard",
+    "abnt-nbr-6024-2012": "technical-standard",
+    "abnt-nbr-6027-2012": "technical-standard",
+    "abnt-nbr-6034-2004": "technical-standard",
+    "abnt-nbr-12225-2023": "technical-standard",
+    "ibge-tabular-1993": "technical-guidance",
+    "capes-portaria-206-2018": "external-regulation"
+  },
+  "scope_precedence": {
+    "technical": [
+      "technical-standard",
+      "institutional-requirement",
+      "institutional-guide",
+      "institutional-guidance",
+      "implementation"
+    ],
+    "delegated-technical-guidance": [
+      "technical-guidance",
+      "technical-standard",
+      "institutional-guidance",
+      "implementation"
+    ],
+    "institutional": [
+      "institutional-act",
+      "institutional-requirement",
+      "institutional-guide",
+      "institutional-guidance",
+      "technical-standard",
+      "implementation"
+    ],
+    "external-regulatory": [
+      "external-regulation",
+      "institutional-requirement",
+      "institutional-guidance",
+      "implementation"
+    ],
+    "project-policy": [
+      "institutional-guide",
+      "institutional-guidance",
+      "technical-standard",
+      "implementation"
+    ]
+  },
+  "conflict_behavior": "review-required",
+  "rules": {
+    "page.a4": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-14724-2024"
+      ],
+      "supporting_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "margin.recto": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-14724-2024"
+      ],
+      "supporting_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "margin.verso": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-14724-2024"
+      ],
+      "supporting_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "font.family.body": {
+      "scope": "institutional",
+      "status": "resolved",
+      "governing_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "font.size.body": {
+      "scope": "institutional",
+      "status": "resolved",
+      "governing_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "font.size.reduced": {
+      "scope": "project-policy",
+      "status": "resolved",
+      "governing_sources": [
+        "ufc-guia-trabalhos-2022"
+      ],
+      "note": "A recomendação UFC é adotada como política técnica do template."
+    },
+    "spacing.body": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-14724-2024"
+      ],
+      "supporting_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "paragraph.first-line": {
+      "scope": "institutional",
+      "status": "resolved",
+      "governing_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "dedication.position": {
+      "scope": "institutional",
+      "status": "resolved",
+      "governing_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "epigraph.short": {
+      "scope": "institutional",
+      "status": "resolved",
+      "governing_sources": [
+        "ufc-guia-trabalhos-2022"
+      ],
+      "constraint_sources": [
+        "abnt-nbr-10520-2023"
+      ]
+    },
+    "epigraph.long": {
+      "scope": "institutional",
+      "status": "resolved",
+      "governing_sources": [
+        "ufc-guia-trabalhos-2022"
+      ],
+      "constraint_sources": [
+        "abnt-nbr-10520-2023"
+      ]
+    },
+    "acknowledgements.typography": {
+      "scope": "institutional",
+      "status": "resolved",
+      "governing_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "summary.word-count": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-6028-2021"
+      ],
+      "supporting_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "summary.paragraph": {
+      "scope": "institutional",
+      "status": "resolved",
+      "governing_sources": [
+        "ufc-guia-trabalhos-2022"
+      ],
+      "constraint_sources": [
+        "abnt-nbr-6028-2021"
+      ]
+    },
+    "toc.pretextual-exclusion": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-6027-2012"
+      ],
+      "supporting_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "toc.typography": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-6027-2012"
+      ],
+      "supporting_sources": [
+        "ufc-guia-trabalhos-2022"
+      ],
+      "note": "Regra ainda agregada; será decomposta na fase N3."
+    },
+    "section.hierarchy": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-6024-2012"
+      ],
+      "supporting_sources": [
+        "ufc-guia-trabalhos-2022"
+      ],
+      "note": "Regra ainda agregada; será decomposta na fase N3."
+    },
+    "quotation.long": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-10520-2023"
+      ],
+      "supporting_sources": [
+        "ufc-guia-citacoes-2025"
+      ]
+    },
+    "references.layout": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-6023-2025"
+      ],
+      "supporting_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "illustration.bounds": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-14724-2024"
+      ]
+    },
+    "illustration.source": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-14724-2024",
+        "abnt-nbr-10520-2023"
+      ]
+    },
+    "table.ibge": {
+      "scope": "delegated-technical-guidance",
+      "status": "resolved",
+      "governing_sources": [
+        "ibge-tabular-1993"
+      ],
+      "supporting_sources": [
+        "abnt-nbr-14724-2024",
+        "ufc-normalizacao-2026"
+      ]
+    },
+    "appendix.heading": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-14724-2024"
+      ],
+      "supporting_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "annex.heading": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-14724-2024"
+      ],
+      "supporting_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "index.presentation": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-6034-2004"
+      ],
+      "supporting_sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    "project.standard": {
+      "scope": "technical",
+      "status": "resolved",
+      "governing_sources": [
+        "abnt-nbr-15287-2025"
+      ],
+      "supporting_sources": [
+        "ufc-normalizacao-2026"
+      ]
+    },
+    "deposit.pdfa": {
+      "scope": "institutional",
+      "status": "resolved",
+      "governing_sources": [
+        "ufc-deposito-tcc-2026",
+        "ufc-deposito-pos-2026"
+      ]
+    },
+    "deposit.approval-signatures": {
+      "scope": "institutional",
+      "status": "resolved",
+      "governing_sources": [
+        "ufc-deposito-tcc-2026",
+        "ufc-deposito-pos-2026"
+      ]
+    },
+    "deposit.catalog-card": {
+      "scope": "institutional",
+      "status": "resolved",
+      "governing_sources": [
+        "ufc-in-2-2026"
+      ]
+    },
+    "deposit.capes": {
+      "scope": "external-regulatory",
+      "status": "resolved",
+      "governing_sources": [
+        "capes-portaria-206-2018"
+      ],
+      "supporting_sources": [
+        "ufc-deposito-pos-2026"
+      ]
+    }
+  }
+}

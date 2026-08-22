@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-08-22",
+  "scope": "ufctex-v2.1.0-current-sources",
+  "purpose": "Audit inventory for phase N2. Runtime normative truth remains normativa/catalog.json plus normativa/precedence.json until N3 decomposition.",
+  "policy": {
+    "current_only": true,
+    "technical_rule": "Current applicable ABNT editions govern technical requirements.",
+    "institutional_rule": "Current UFC acts and pages govern institutional requirements within their scope.",
+    "guide_rule": "Current UFC guides may provide institutional detail, but embedded superseded ABNT citations never determine the technical edition.",
+    "legacy_rule": "Superseded standards and obsolete repository artifacts are not retained as active source records."
+  },
+  "sources": [
+    {
+      "id": "ufc-normalizacao-2026",
+      "kind": "institutional-page",
+      "title": "Normalização de trabalhos acadêmicos — Sistema de Bibliotecas UFC",
+      "publisher": "Universidade Federal do Ceará",
+      "url": "https://biblioteca.ufc.br/pt/servicos-e-produtos/normalizacao-de-trabalhos-academicos/",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "applies_to": ["normalization", "guides", "tables"]
+    },
+    {
+      "id": "ufc-res-17-cepe-2017",
+      "kind": "institutional-act",
+      "title": "Resolução nº 17/CEPE, de 02 de outubro de 2017",
+      "publisher": "Universidade Federal do Ceará",
+      "date": "2017-10-02",
+      "url": "https://ufc.br/images/_files/a_universidade/cepe/resolucao_cepe_2017/resolucao17_cepe_2017.pdf",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "applies_to": ["normalization-policy", "course-specific-models"]
+    },
+    {
+      "id": "ufc-res-05-consuni-2023",
+      "kind": "institutional-act",
+      "title": "Resolução nº 05/Consuni, de 09 de fevereiro de 2023",
+      "publisher": "Universidade Federal do Ceará",
+      "date": "2023-02-09",
+      "url": "https://www.ufc.br/images/_files/a_universidade/consuni/resolucao_consuni_2023/resolucao05_consuni_2023.pdf",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "applies_to": ["repository", "deposit", "pdfa", "embargo"]
+    },
+    {
+      "id": "ufc-in-2-2024",
+      "kind": "institutional-act",
+      "title": "Instrução Normativa nº 2/2024/BU/REITORIA",
+      "publisher": "Universidade Federal do Ceará",
+      "date": "2024-12-30",
+      "url": "https://biblioteca.ufc.br/wp-content/uploads/2025/07/sei-ufc-5371059-instrucao-normativa.pdf",
+      "status": "current-with-superseded-provisions",
+      "checked_at": "2026-08-22",
+      "applies_to": ["deposit", "pdfa", "approval-sheet", "capes", "metadata"],
+      "notes": "Use only provisions not displaced by later current acts. The visual catalog-card requirement is overridden by the 2026 joint instruction."
+    },
+    {
+      "id": "ufc-in-2-2026",
+      "kind": "institutional-act",
+      "title": "Instrução Normativa Conjunta nº 2/2026/SIBI/PROGRAD/PRPPG",
+      "publisher": "Universidade Federal do Ceará",
+      "date": "2026-02-10",
+      "url": "https://biblioteca.ufc.br/wp-content/uploads/2026/02/instrucao-normativa-conjunta-2.pdf",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "applies_to": ["deposit", "catalog-card", "metadata"],
+      "overrides": [{"source": "ufc-in-2-2024", "scope": "visual-catalog-card-requirement"}]
+    },
+    {
+      "id": "ufc-deposito-tcc-2026",
+      "kind": "institutional-page",
+      "title": "Normas para o Recebimento de TCC",
+      "publisher": "Universidade Federal do Ceará",
+      "url": "https://biblioteca.ufc.br/pt/normas-sibi/normas-para-o-recebimento-de-tcc/",
+      "status": "current",
+      "updated_at": "2026-03-04",
+      "checked_at": "2026-08-22",
+      "applies_to": ["tcc", "deposit", "pdfa", "approval-sheet"]
+    },
+    {
+      "id": "ufc-deposito-pos-2026",
+      "kind": "institutional-page",
+      "title": "Normas para o Recebimento de Teses e Dissertações",
+      "publisher": "Universidade Federal do Ceará",
+      "url": "https://biblioteca.ufc.br/pt/normas-sibi/normas-para-o-recebimento-de-teses-e-dissertacoes/",
+      "status": "current",
+      "updated_at": "2026-03-04",
+      "checked_at": "2026-08-22",
+      "applies_to": ["dissertation", "thesis", "deposit", "pdfa", "approval-sheet", "capes"]
+    },
+    {
+      "id": "ufc-ficha-catalografica-2026",
+      "kind": "institutional-page",
+      "title": "Ficha Catalográfica — Perguntas Frequentes",
+      "publisher": "Universidade Federal do Ceará",
+      "url": "https://biblioteca.ufc.br/pt/perguntas-frequentes/ficha-catalografica-2/",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "applies_to": ["catalog-card", "deposit"]
+    },
+    {
+      "id": "ufc-guia-trabalhos-2022",
+      "kind": "institutional-guide",
+      "title": "Guia de Normalização de Trabalhos Acadêmicos da UFC",
+      "publisher": "Universidade Federal do Ceará",
+      "edition": "2022",
+      "url": "https://biblioteca.ufc.br/wp-content/uploads/2022/05/guianormalizacaotrabalhosacademicos-17.05.2022.pdf",
+      "status": "current-institutional-with-stale-technical-citations",
+      "checked_at": "2026-08-22",
+      "applies_to": ["institutional-layout"],
+      "technical_authority": false
+    },
+    {
+      "id": "ufc-guia-citacoes-2025",
+      "kind": "institutional-guide",
+      "title": "Guia de Normalização para Elaboração de Citações",
+      "publisher": "Universidade Federal do Ceará",
+      "edition": "2025",
+      "url": "https://biblioteca.ufc.br/wp-content/uploads/2025/06/guianormalizacaocitacoes2025.pdf",
+      "status": "current-institutional-with-stale-technical-citations",
+      "checked_at": "2026-08-22",
+      "applies_to": ["citations"],
+      "technical_authority": false,
+      "notes": "Its citation guidance is aligned with the current citation standard, but another embedded technical reference is no longer the current edition."
+    },
+    {
+      "id": "ufc-guia-referencias-2023",
+      "kind": "institutional-guide",
+      "title": "Guia de Normalização para Elaboração de Referências",
+      "publisher": "Universidade Federal do Ceará",
+      "edition": "2023",
+      "url": "https://biblioteca.ufc.br/wp-content/uploads/2023/12/guianormalizacaoreferencias.pdf",
+      "status": "current-institutional-with-stale-technical-citations",
+      "checked_at": "2026-08-22",
+      "applies_to": ["references"],
+      "technical_authority": false
+    },
+    {
+      "id": "ufc-guia-projetos-2019",
+      "kind": "institutional-guide",
+      "title": "Guia de Normalização de Projetos de Pesquisa",
+      "publisher": "Universidade Federal do Ceará",
+      "edition": "2019",
+      "url": "https://biblioteca.ufc.br/wp-content/uploads/2019/10/guia-de-projetos-06.10.2019.pdf",
+      "status": "current-institutional-with-stale-technical-citations",
+      "checked_at": "2026-08-22",
+      "applies_to": ["research-project"],
+      "technical_authority": false
+    },
+    {
+      "id": "abnt-nbr-14724-2024",
+      "kind": "technical-standard",
+      "title": "ABNT NBR 14724:2024 — Trabalhos acadêmicos — Apresentação",
+      "publisher": "ABNT",
+      "edition": "2024",
+      "corrected_at": "2025-04-01",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "access": "official-catalog-or-licensed-access"
+    },
+    {
+      "id": "abnt-nbr-10520-2023",
+      "kind": "technical-standard",
+      "title": "ABNT NBR 10520:2023 — Citações em documentos — Apresentação",
+      "publisher": "ABNT",
+      "edition": "2023",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "access": "official-catalog-or-licensed-access"
+    },
+    {
+      "id": "abnt-nbr-6023-2025",
+      "kind": "technical-standard",
+      "title": "ABNT NBR 6023:2025 — Referências — Elaboração",
+      "publisher": "ABNT",
+      "edition": "2025",
+      "published_at": "2025-05-21",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "access": "official-catalog-or-licensed-access"
+    },
+    {
+      "id": "abnt-nbr-15287-2025",
+      "kind": "technical-standard",
+      "title": "ABNT NBR 15287:2025 — Projeto de pesquisa — Apresentação",
+      "publisher": "ABNT",
+      "edition": "2025",
+      "published_at": "2025-03-18",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "access": "official-catalog-or-licensed-access"
+    },
+    {
+      "id": "abnt-nbr-6028-2021",
+      "kind": "technical-standard",
+      "title": "ABNT NBR 6028:2021 — Resumo, resenha e recensão — Apresentação",
+      "publisher": "ABNT",
+      "edition": "2021",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "access": "official-catalog-or-licensed-access"
+    },
+    {
+      "id": "abnt-nbr-6024-2012",
+      "kind": "technical-standard",
+      "title": "ABNT NBR 6024:2012 — Numeração progressiva das seções",
+      "publisher": "ABNT",
+      "edition": "2012",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "access": "official-catalog-or-licensed-access"
+    },
+    {
+      "id": "abnt-nbr-6027-2012",
+      "kind": "technical-standard",
+      "title": "ABNT NBR 6027:2012 — Sumário — Apresentação",
+      "publisher": "ABNT",
+      "edition": "2012",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "access": "official-catalog-or-licensed-access"
+    },
+    {
+      "id": "abnt-nbr-6034-2004",
+      "kind": "technical-standard",
+      "title": "ABNT NBR 6034:2004 — Índice — Apresentação",
+      "publisher": "ABNT",
+      "edition": "2004",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "access": "official-catalog-or-licensed-access"
+    },
+    {
+      "id": "abnt-nbr-12225-2023",
+      "kind": "technical-standard",
+      "title": "ABNT NBR 12225:2023 — Lombada — Apresentação",
+      "publisher": "ABNT",
+      "edition": "2023",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "access": "official-catalog-or-licensed-access"
+    },
+    {
+      "id": "ibge-tabular-1993",
+      "kind": "technical-guidance",
+      "title": "Normas de apresentação tabular",
+      "publisher": "IBGE",
+      "edition": "3",
+      "year": 1993,
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "applies_to": ["numeric-tables"]
+    },
+    {
+      "id": "capes-portaria-206-2018",
+      "kind": "external-regulation",
+      "title": "Portaria CAPES nº 206/2018",
+      "publisher": "CAPES",
+      "date": "2018-09-04",
+      "url": "https://www.gov.br/capes/pt-br/centrais-de-conteudo/portaria-no-206-de-4-de-setembro-de-2018.pdf",
+      "status": "current",
+      "checked_at": "2026-08-22",
+      "applies_to": ["capes-funded-work"]
+    }
+  ],
+  "current_technical_sources": [
+    "abnt-nbr-14724-2024",
+    "abnt-nbr-10520-2023",
+    "abnt-nbr-6023-2025",
+    "abnt-nbr-15287-2025",
+    "abnt-nbr-6028-2021",
+    "abnt-nbr-6024-2012",
+    "abnt-nbr-6027-2012",
+    "abnt-nbr-6034-2004",
+    "abnt-nbr-12225-2023"
+  ]
+}

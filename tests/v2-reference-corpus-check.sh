@@ -32,9 +32,11 @@ PY
 fi
 
 pdftotext -layout documento.pdf /tmp/ufctex-v2-reference-corpus.txt
+pdftotext -bbox-layout documento.pdf /tmp/ufctex-v2-reference-corpus-bbox.html
 
 python3 <<'PY'
 import re
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 
@@ -42,6 +44,21 @@ def normalize_pdf_text(value):
     value = value.replace('\u00ad', '')
     value = re.sub(r'-[ \t]*\r?\n[ \t]*(?=\w)', '', value)
     return re.sub(r'\s+', ' ', value)
+
+
+def spaced_leader_pattern():
+    return r'(?:\.\s+){1,}\.\s*\d+\s*$'
+
+
+def require_dotted_entry(source, start, end, marker):
+    start_at = source.find(start)
+    end_at = source.find(end, start_at + len(start))
+    if start_at < 0 or end_at < 0:
+        raise SystemExit(f'Corpus V2 falhou: bloco de lista não localizado: {start}.')
+    block = source[start_at:end_at]
+    pattern = re.compile(re.escape(marker) + r'[^\n]*' + spaced_leader_pattern(), re.M)
+    if not pattern.search(block):
+        raise SystemExit(f'Corpus V2 falhou: líder pontilhado espaçado ausente em {start}: {marker}')
 
 
 text = Path('/tmp/ufctex-v2-reference-corpus.txt').read_text(encoding='utf-8', errors='replace')
@@ -119,6 +136,85 @@ for start, end, marker in list_blocks:
         raise SystemExit(f'Corpus V2 falhou: entrada com caixa preservada ausente de {start}: {marker}')
     if marker.upper() in block:
         raise SystemExit(f'Corpus V2 falhou: entrada indevidamente convertida para caixa alta em {start}.')
+    require_dotted_entry(text, start, end, marker)
+
+raw_pages = text.split('\f')
+toc_starts = [
+    index for index, page in enumerate(raw_pages)
+    if 'SUMÁRIO' in page and 'INTRODUÇÃO' in page
+]
+if len(toc_starts) != 1:
+    raise SystemExit(f'Corpus V2 falhou: esperado um sumário principal, encontrados {len(toc_starts)}.')
+
+toc_start = toc_starts[0]
+toc_end = None
+for index in range(toc_start + 1, len(raw_pages)):
+    if re.search(r'^\s*1\s+INTRODUÇÃO\s*$', raw_pages[index], re.M):
+        toc_end = index
+        break
+if toc_end is None:
+    raise SystemExit('Corpus V2 falhou: fim do sumário não localizado antes da seção INTRODUÇÃO.')
+
+toc = '\n'.join(raw_pages[toc_start:toc_end])
+toc_flat = normalize_pdf_text(toc)
+for marker in (
+    'INTRODUÇÃO',
+    'Normas e diretrizes adotadas',
+    'CONCLUSÃO',
+    'REFERÊNCIAS',
+    'GLOSSÁRIO',
+    'APÊNDICE A',
+    'APÊNDICE D',
+    'ANEXO A',
+    'ANEXO B',
+    'ÍNDICE REMISSIVO',
+):
+    if marker not in toc_flat:
+        raise SystemExit(f'Corpus V2 falhou: entrada obrigatória ausente do sumário: {marker}.')
+
+entry_lines = [line for line in toc.splitlines() if re.search(r'\d+\s*$', line)]
+if len(entry_lines) < 20:
+    raise SystemExit(f'Corpus V2 falhou: poucas entradas paginadas no sumário: {len(entry_lines)}.')
+undotted = [
+    line.strip() for line in entry_lines
+    if not re.search(spaced_leader_pattern(), line)
+]
+if undotted:
+    sample = ' | '.join(undotted[:8])
+    raise SystemExit(
+        f'Corpus V2 falhou: {len(undotted)} entrada(s) do sumário sem líder pontilhado espaçado: {sample}'
+    )
+
+root = ET.parse('/tmp/ufctex-v2-reference-corpus-bbox.html').getroot()
+local = lambda tag: tag.rsplit('}', 1)[-1]
+
+
+def toc_title_x(marker):
+    matches = []
+    for line in (node for node in root.iter() if local(node.tag) == 'line'):
+        words = [node for node in line if local(node.tag) == 'word']
+        if not words:
+            continue
+        raw = ' '.join(''.join(word.itertext()) for word in words)
+        if not raw.startswith(marker):
+            continue
+        if not any(''.join(word.itertext()).strip() == '.' for word in words):
+            continue
+        matches.append((raw, float(words[0].attrib['xMin'])))
+    if len(matches) != 1:
+        raise SystemExit(
+            f'Corpus V2 falhou: esperado um título primário no sumário para {marker}; encontrados {len(matches)}.'
+        )
+    return matches[0][1]
+
+reference_x = toc_title_x('INTRODUÇÃO')
+for marker in ('CONCLUSÃO', 'REFERÊNCIAS', 'GLOSSÁRIO', 'ÍNDICE REMISSIVO'):
+    actual_x = toc_title_x(marker)
+    if abs(actual_x - reference_x) > 1.5:
+        raise SystemExit(
+            f'Corpus V2 falhou: {marker} desalinhado no sumário: '
+            f'x={actual_x:.2f}, referência={reference_x:.2f}'
+        )
 PY
 
 check_list() {

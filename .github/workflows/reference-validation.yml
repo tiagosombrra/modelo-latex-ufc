@@ -9,23 +9,24 @@ on:
       - 'release/v2.*'
   workflow_dispatch:
 
+concurrency:
+  group: v2-reference-audit-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
   statuses: write
 
 jobs:
   reference-audit:
-    name: Repository and reference corpus audit
+    name: Unified V2 validation
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 55
     steps:
       - name: Checkout
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
-      - name: Audit tracked repository files
-        run: python3 tests/v2-repository-audit.py
-
-      - name: Validate V2 repository and reference corpus
+      - name: Validate V2
         uses: xu-cheng/texlive-action@22c04326a5d855880f9d39bb955138bf11c6df80 # v3
         with:
           texlive_version: 2026
@@ -33,23 +34,24 @@ jobs:
           run: |
             export DEBIAN_FRONTEND=noninteractive
             apt-get update -y
-            apt-get install -y --no-install-recommends make poppler-utils
+            apt-get install -y --no-install-recommends make nodejs poppler-utils
             make reference-assets
-            UFC_REQUIRE_REFERENCE_IMAGES=1 make preflight
+            UFC_REQUIRE_REFERENCE_IMAGES=1 python3 tests/run.py --mode pr
 
-      - name: Upload reference corpus PDF
-        if: ${{ always() && hashFiles('documento.pdf') != '' }}
+      - name: Upload validation evidence
+        if: ${{ always() }}
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
-          name: v2-reference-corpus-${{ github.run_id }}
+          name: v2-validation-${{ github.run_id }}
           path: |
+            artifacts/validation
             documento.pdf
             documento.loi
             documento.lot
             documento.loc
             documento.loa
             documento.toc
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 30
 
       - name: Publish reference audit status
@@ -71,7 +73,7 @@ jobs:
           payload = json.dumps({
               'state': state,
               'context': 'ufctex/reference-audit',
-              'description': 'Repository audit and V2 reference corpus',
+              'description': 'Unified repository and V2 validation',
               'target_url': os.environ['RUN_URL'],
           }).encode()
           request = urllib.request.Request(

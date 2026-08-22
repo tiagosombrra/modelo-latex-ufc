@@ -29,7 +29,7 @@ Portable fallback fonts are available when strict literal-font mode is disabled,
 
 ## Documentation
 
-The CTAN candidate contains:
+The CTAN submission candidate contains:
 
 - the complete reference document in PDF;
 - the source of the reference document;
@@ -50,9 +50,9 @@ The pinned `abntexto` class used by the dedicated Overleaf compatibility bundle 
 
 ## Release state
 
-The 2.1.0 archive is a release candidate until the project completes GitHub Release publication, the real Overleaf import smoke test and the final Gate D review.
+Version 2.1.0 has completed Gate T, deterministic distribution preflight and the real Overleaf import smoke test. It is the stable GitHub/Overleaf release line.
 
-The package name `ufctex` must be reconfirmed in the CTAN catalogue immediately before upload.
+The CTAN archive remains a submission candidate until the redistribution classification of the UFC institutional mark is confirmed. The package name `ufctex` must also be reconfirmed in the CTAN catalogue immediately before upload.
 
 ## Project
 

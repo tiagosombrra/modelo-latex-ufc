@@ -1,6 +1,6 @@
 # Base normativa da V2
 
-Última auditoria normativa: **2026-08-20**.  
+Última auditoria normativa: **2026-08-22**.  
 Estado de implementação tipográfica: **Fase 2 concluída em 2026-08-21; Gate T encerrado**.
 
 Este arquivo é a fonte única do projeto para política normativa, classificação de conformidade e vínculo entre requisito, implementação e teste.
@@ -104,6 +104,7 @@ O PDF certificado também deve ser **autocontido para renderização**: todas as
 | dedicatória sem título | **CONFORME** | gate pré-textual verifica ausência de título |
 | agradecimentos, errata, resumo, abstract e listas | **CONFORME** | presença e títulos exercitados nos gates |
 | agradecimento CAPES quando aplicável | **CONFORME NO ESCOPO DO TEMPLATE** | `1-pre-textuais/agradecimentos.tex` orienta o autor e `tests/v2-capes-guidance-check.sh` protege a orientação; a condição depende do financiamento |
+| epígrafe iniciando abaixo do meio da folha/página | **CONFORME** | `pretextuais.def` posiciona o bloco na metade inferior e `tests/v2-pretextual-check.sh` mede a coordenada no PDF |
 | epígrafe longa em 10 pt, espaço simples e recuo de 4 cm | **CONFORME** | implementação explícita em `pretextuais.def` |
 | resumo e abstract sem recuo de primeira linha | **CONFORME** | `\parindent=0pt` nos dois elementos |
 | resumo/abstract entre 150 e 500 palavras | **CONFORME** | `tests/v2-reference-check.sh` conta palavras |
@@ -241,6 +242,10 @@ Os elementos pré-textuais são contados a partir da folha de rosto e não são 
 ### Espaçamento
 
 O Guia UFC orienta espaço 1,5 no corpo e espaço simples nas exceções institucionais. Não deve existir espaço adicional entre parágrafos. Referências consecutivas são separadas por uma linha simples em branco.
+
+### Epígrafe
+
+O Guia UFC orienta que a epígrafe se inicie abaixo do meio da folha/página. A V2 posiciona o bloco na metade inferior e o gate de pré-textuais mede essa coordenada no PDF. Para até três linhas, preserva recuo de 8 cm, fonte 12 e espaço 1,5; para mais de três linhas, usa recuo de 4 cm, fonte 10 e espaço simples.
 
 ### Ilustrações e tabelas
 

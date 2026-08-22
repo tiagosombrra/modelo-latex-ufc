@@ -40,13 +40,38 @@ if grep -Fq 'Tabela acadêmica de teste' objetos-avancados.loi; then
 fi
 
 if command -v pdftotext >/dev/null 2>&1; then
-  pdftotext objetos-avancados.pdf /tmp/ufctex-v2-objects.txt
+  pdftotext -layout objetos-avancados.pdf /tmp/ufctex-v2-objects.txt
   for heading in 'LISTA DE ILUSTRAÇÕES' 'LISTA DE FIGURAS' 'LISTA DE TABELAS' 'LISTA DE QUADROS' 'LISTA DE GRÁFICOS' 'LISTA DE CÓDIGOS' 'LISTA DE ALGORITMOS'; do
     grep -Fq "$heading" /tmp/ufctex-v2-objects.txt || {
       echo "Preflight V2 falhou: lista de objeto ausente: $heading"
       exit 1
     }
   done
+
+  python3 <<'PY'
+import re
+from pathlib import Path
+
+text = Path('/tmp/ufctex-v2-objects.txt').read_text(encoding='utf-8', errors='replace')
+
+markers = (
+    'Figura normativa de teste',
+    'Gráfico normativo de teste',
+    'Quadro multipágina de teste',
+    'Tabela acadêmica de teste',
+    'Trecho C++ embutido',
+    'Arquivo C++ externo',
+    'Busca linear',
+)
+
+for marker in markers:
+    pattern = re.compile(re.escape(marker) + r'[^\n]*\.\s*(?:\.\s*)*\d+\s*$', re.M)
+    if not pattern.search(text):
+        raise SystemExit(
+            f'Preflight V2 falhou: líder pontilhado ausente na lista de objeto: {marker}'
+        )
+PY
+
   grep -Fq 'Fonte:' /tmp/ufctex-v2-objects.txt || { echo 'Fonte de objeto ausente.'; exit 1; }
   grep -Fq 'Nota:' /tmp/ufctex-v2-objects.txt || { echo 'Nota de objeto ausente.'; exit 1; }
 fi

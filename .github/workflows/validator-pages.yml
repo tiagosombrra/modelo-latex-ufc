@@ -1,0 +1,62 @@
+name: PDF validator
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/v2.*'
+    paths:
+      - 'validator/**'
+      - 'normativa/**'
+      - 'tools/validate-ufc-pdf.py'
+      - 'tools/normative_catalog.py'
+      - 'tests/checks/validator_source.py'
+      - '.github/workflows/validator-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pdf-validator-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate sources
+        run: python3 tests/checks/validator_source.py
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: check
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Build normative catalog
+        run: python3 tools/normative_catalog.py --emit-web validator/normative-catalog.js
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: validator
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

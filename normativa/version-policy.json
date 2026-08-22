@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-08-22",
+  "mode": "latest-current-applicable-technical-standard-mandatory",
+  "decision": "mandatory",
+  "purpose": "Make the UFCtex technical-version rule explicit, auditable and machine-checkable when UFC guides still cite superseded ABNT editions.",
+  "institutional_basis": [
+    {
+      "id": "ufc-res-17-cepe-2017",
+      "kind": "institutional-act",
+      "title": "Resolução nº 17/CEPE, de 02 de outubro de 2017",
+      "locator": "Art. 1º",
+      "url": "https://ufc.br/images/_files/a_universidade/cepe/resolucao_cepe_2017/resolucao17_cepe_2017.pdf",
+      "rule": "A normalização de trabalhos acadêmicos na UFC é realizada de acordo com as normas técnicas de informação e documentação da ABNT, salvo modelo específico formalmente aprovado no âmbito previsto pela resolução."
+    },
+    {
+      "id": "ufc-normalizacao-2026",
+      "kind": "institutional-page",
+      "title": "Normalização de trabalhos acadêmicos — Sistema de Bibliotecas UFC",
+      "locator": "Guias de Normalização da UFC",
+      "url": "https://biblioteca.ufc.br/pt/servicos-e-produtos/normalizacao-de-trabalhos-academicos/",
+      "page_updated_at": "2026-03-04",
+      "checked_at": "2026-08-22",
+      "rule": "A página institucional vigente declara que os Guias de Normalização da UFC estão de acordo com as normas vigentes da ABNT."
+    }
+  ],
+  "policy": {
+    "latest_current_technical_edition_mandatory": true,
+    "stale_embedded_reference_can_govern": false,
+    "prior_edition_documentation_context_only": true,
+    "current_ufc_act_governs_institutional_scope": true,
+    "conflict_behavior": "review-required",
+    "course_specific_exception": "Somente modelo específico formalmente aprovado nos termos da Resolução nº 17/CEPE pode substituir a regra técnica geral dentro de seu escopo; esse ato deve ser cadastrado como fonte institucional vigente antes de ser consumido pelo template."
+  },
+  "current_technical_sources": [
+    "abnt-nbr-14724-2024",
+    "abnt-nbr-10520-2023",
+    "abnt-nbr-6023-2025",
+    "abnt-nbr-15287-2025",
+    "abnt-nbr-6028-2021",
+    "abnt-nbr-6024-2012",
+    "abnt-nbr-6027-2012",
+    "abnt-nbr-6034-2004",
+    "abnt-nbr-12225-2023"
+  ],
+  "supersessions": [
+    {
+      "context_source": "ufc-guia-trabalhos-2022",
+      "superseded_reference": "ABNT NBR 14724:2011",
+      "current_reference": "ABNT NBR 14724:2024",
+      "current_source": "abnt-nbr-14724-2024",
+      "note": "A edição de 2011 permanece citada no Guia UFC 2022, mas não governa requisitos técnicos ativos."
+    },
+    {
+      "context_source": "ufc-guia-trabalhos-2022",
+      "superseded_reference": "ABNT NBR 6023:2018",
+      "current_reference": "ABNT NBR 6023:2025",
+      "current_source": "abnt-nbr-6023-2025"
+    },
+    {
+      "context_source": "ufc-guia-trabalhos-2022",
+      "superseded_reference": "ABNT NBR 10520:2002",
+      "current_reference": "ABNT NBR 10520:2023",
+      "current_source": "abnt-nbr-10520-2023"
+    },
+    {
+      "context_source": "ufc-guia-trabalhos-2022",
+      "superseded_reference": "ABNT NBR 12225:2004",
+      "current_reference": "ABNT NBR 12225:2023",
+      "current_source": "abnt-nbr-12225-2023"
+    },
+    {
+      "context_source": "ufc-guia-citacoes-2025",
+      "superseded_reference": "ABNT NBR 6023:2018",
+      "current_reference": "ABNT NBR 6023:2025",
+      "current_source": "abnt-nbr-6023-2025",
+      "note": "O guia de citações já usa a NBR 10520:2023; apenas a referência bibliográfica interna à NBR 6023 está superada."
+    },
+    {
+      "context_source": "ufc-guia-referencias-2023",
+      "superseded_reference": "ABNT NBR 6023:2018",
+      "current_reference": "ABNT NBR 6023:2025",
+      "current_source": "abnt-nbr-6023-2025"
+    },
+    {
+      "context_source": "ufc-guia-projetos-2019",
+      "superseded_reference": "ABNT NBR 15287:2011",
+      "current_reference": "ABNT NBR 15287:2025",
+      "current_source": "abnt-nbr-15287-2025"
+    },
+    {
+      "context_source": "ufc-guia-projetos-2019",
+      "superseded_reference": "ABNT NBR 6023:2018",
+      "current_reference": "ABNT NBR 6023:2025",
+      "current_source": "abnt-nbr-6023-2025"
+    },
+    {
+      "context_source": "ufc-guia-projetos-2019",
+      "superseded_reference": "ABNT NBR 10520:2002",
+      "current_reference": "ABNT NBR 10520:2023",
+      "current_source": "abnt-nbr-10520-2023"
+    },
+    {
+      "context_source": "ufc-guia-projetos-2019",
+      "superseded_reference": "ABNT NBR 12225:2004",
+      "current_reference": "ABNT NBR 12225:2023",
+      "current_source": "abnt-nbr-12225-2023"
+    }
+  ],
+  "documentation": {
+    "human_map": "docs/VIGENCIA-NORMATIVA.md",
+    "historical_references_are_allowed_only_as_explanatory_context": true
+  }
+}

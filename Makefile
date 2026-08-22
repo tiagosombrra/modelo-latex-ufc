@@ -9,13 +9,13 @@ ENGINE ?= pdflatex
 LATEXFLAGS := -interaction=nonstopmode -halt-on-error -file-line-error
 
 .PHONY: all pdf compile lua version clean reference-assets \
-	preflight release-preflight package distribution-preflight \
+	check release-check preflight release-preflight package distribution-preflight \
 	v2-repository-audit v2-reference-check v2-reference-corpus-check v2-pdfa-check \
 	v2-check v2-distribution-check v2-release-package-check \
 	v2-layout-check v2-font-config-check v2-pdf-geometry-check v2-math-check v2-normative-complement-check \
 	v2-pretextual-check v2-duplex-pretextual-check \
 	v2-object-check v2-object-geometry-check v2-code-typography-check v2-table-ibge-check v2-minted-check \
-	v2-algorithm-numbering-check v2-documentary-source-check v2-bib-check v2-overleaf-stable-check \
+	v2-algorithm-numbering-check v2-pdf-validator-check v2-documentary-source-check v2-bib-check v2-overleaf-stable-check \
 	v2-project-check v2-profile-check v2-profile-pdfa-check \
 	v2-posttextual-compat-check v2-duplex-posttextual-check \
 	v2-build-check v2-multivolume-check v2-catalog-card-check
@@ -57,6 +57,12 @@ compile:
 lua:
 	$(MAKE) clean
 	$(MAKE) ENGINE=lualatex compile
+
+check:
+	@python3 tests/run.py --mode pr
+
+release-check:
+	@python3 tests/run.py --mode release
 
 v2-repository-audit:
 	@python3 tests/v2-repository-audit.py
@@ -115,6 +121,9 @@ v2-minted-check:
 v2-algorithm-numbering-check:
 	@sh tests/v2-algorithm-numbering-check.sh
 
+v2-pdf-validator-check: v2-reference-check
+	@sh tests/v2-pdf-validator-check.sh documento.pdf
+
 v2-documentary-source-check:
 	@sh tests/v2-documentary-source-check.sh
 
@@ -171,12 +180,10 @@ v2-check: \
 	v2-catalog-card-check
 	@echo "Gate local isolado da V2 concluído."
 
-preflight: v2-reference-corpus-check v2-check
+preflight: check
 	@echo "Preflight completo da V2 concluído."
 
-release-preflight: preflight
-	@sh tests/v2-pdfa-check.sh
-	@sh tests/v2-profile-pdfa-check.sh
+release-preflight: release-check
 	@echo "Preflight de release da V2 concluído."
 
 package: reference-assets

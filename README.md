@@ -2,8 +2,7 @@
 
 Classe LaTeX para trabalhos acadêmicos da Universidade Federal do Ceará, baseada em `abntexto`.
 
-Versão publicada atual: **2.0.0**.  
-Versão candidata em preparação: **2.1.0**.
+Versão publicada atual: **2.1.0**.
 
 A linha 2.x reorganiza a implementação em módulos, preserva a API pública da V1 quando possível e acompanha a base normativa vigente auditada em agosto de 2026.
 
@@ -14,7 +13,7 @@ A linha 2.x reorganiza a implementação em módulos, preserva a API pública da
 - `biblatex` + `biber`;
 - pacotes opcionais apenas quando os módulos correspondentes forem ativados.
 
-A versão estável pública do Overleaf consultada em 20/08/2026 utiliza TeX Live 2025. Como `abntexto` 1.1 foi publicado em 2026, o bundle específico `modelo-latex-ufc-overleaf-2.1.0.zip` inclui uma cópia íntegra e pinada de `abntexto.cls` 1.1. O proxy de CI em TeX Live 2025 não substitui o smoke final dentro do serviço Overleaf.
+O bundle específico `modelo-latex-ufc-overleaf-2.1.0.zip` inclui uma cópia íntegra e pinada de `abntexto.cls` 1.1 para manter compatibilidade com ambientes que ainda não o ofereçam. O smoke real no Overleaf, realizado em 21/08/2026, compilou com sucesso em pdfLaTeX sobre TeX Live 2026; o proxy de CI em TeX Live 2025 permanece como verificação adicional de compatibilidade.
 
 ## Estrutura
 
@@ -141,7 +140,7 @@ No modo `frente-verso`, a V2 aplica margens espelhadas:
 
 ## Ficha catalográfica
 
-O padrão da candidata é:
+O padrão da versão 2.1.0 é:
 
 ```tex
 \ufcsetup{ficha-catalografica = nao}
@@ -413,11 +412,11 @@ Preflight automatizado de distribuição:
 make distribution-preflight
 ```
 
-`distribution-preflight` não representa sozinho o Gate D formal, que também exige GitHub Release, preparação CTAN, smoke no serviço Overleaf e documentação final.
+`distribution-preflight` cobre a parte automatizada do Gate D. O processo final também inclui smoke real no Overleaf, revisão dos metadados e publicação da tag imutável/GitHub Release. A submissão ao CTAN permanece uma etapa separada.
 
 ## Corpus de referência e auditoria
 
-A candidata 2.1.0 transforma `documento.tex` em um corpus visual e semântico de regressão. Ele compila, entre outros casos:
+A versão 2.1.0 transforma `documento.tex` em um corpus visual e semântico de regressão. Ele compila, entre outros casos:
 
 - errata e demais pré-textuais;
 - figuras estreita, intermediária e larga;
@@ -434,11 +433,11 @@ Casos incompatíveis entre si ou dependentes do ambiente continuam em fixtures d
 
 `tests/v2-repository-audit.py` percorre todos os arquivos rastreados pelo Git e bloqueia, entre outros problemas, resíduos V1 fora da camada de compatibilidade, chaves públicas inexistentes em exemplos, caminhos absolutos, artefatos gerados versionados e divergências de versão.
 
-O histórico da auditoria da candidata está em `docs/AUDITORIA-V2.md`.
+O histórico da auditoria da V2 está em `docs/AUDITORIA-V2.md`.
 
 ## Distribuição
 
-A candidata 2.1.0 produz:
+A versão 2.1.0 produz:
 
 - `ufctex-2.1.0.zip`: classe, módulos, ativos necessários, licença e documentação;
 - `modelo-latex-ufc-2.1.0.zip`: template completo para uso local;

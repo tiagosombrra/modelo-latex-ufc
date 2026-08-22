@@ -10,7 +10,7 @@
   {
     \ufc_primary_section_break:
     \cs_if_exist:NT \phantomsection { \phantomsection }
-    \addcontentsline{toc}{section}{\MakeUppercase{#1}}
+    \addcontentsline{toc}{section}{\protect\toclabelbox{}\MakeUppercase{#1}}
     \begin{center}
       \bfseries\MakeUppercase{#1}\par
     \end{center}
