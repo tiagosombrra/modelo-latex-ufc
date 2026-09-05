@@ -3,7 +3,7 @@ set -eu
 
 source_fixture="tests/documents/backmatter.tex"
 tmp_fixture=".abntexto-ufc-posttextual-duplex.tex"
-job="postextuais-duplex"
+job="backmatter-duplex"
 
 cleanup() {
   rm -f "$tmp_fixture" "$job".aux "$job".bbl "$job".bcf "$job".blg "$job".glg \
@@ -41,7 +41,7 @@ warnings=$(grep -E 'LaTeX Warning:|Package [^ ]+ Warning:|Class [^ ]+ Warning:|O
   grep -vF -e 'Class abntexto-ufc Warning: Times New Roman not found; using TeX Gyre Termes' || true)
 if [ -n "$warnings" ]; then
   printf '%s\n' "$warnings"
-  echo 'Pós-textuais duplex contêm warning ou overflow não reconhecido.'
+  echo 'Duplex back-matter fixture contains an unrecognized warning or overflow.'
   exit 1
 fi
 
@@ -74,17 +74,17 @@ checks = (
 for marker, label in checks:
     matches = [i + 1 for i, page in enumerate(normalized) if marker in page]
     if not matches:
-        raise SystemExit(f'{job}: marker pós-textual missing: {label}')
+        raise SystemExit(f'{job}: back-matter marker is missing: {label}')
     if matches[0] % 2 == 0:
-        raise SystemExit(f'{job}: {label} iniciou in the verso, page física {matches[0]}')
+        raise SystemExit(f'{job}: {label} started on a verso physical page: {matches[0]}')
 
 index_pages = [i + 1 for i, page in enumerate(normalized) if 'índice' in page]
 if not index_pages:
-    raise SystemExit(f'{job}: index missing')
+    raise SystemExit(f'{job}: index is missing')
 if index_pages[-1] % 2 == 0:
-    raise SystemExit(f'{job}: index iniciou in the verso, page física {index_pages[-1]}')
+    raise SystemExit(f'{job}: index started on a verso physical page: {index_pages[-1]}')
 
-print(f'{job}: pós-textuais auditados iniciam no anverso.')
+print(f'{job}: audited back-matter elements start on recto pages.')
 PY
 
-echo 'Pós-textuais duplex gate completed.'
+echo 'Duplex back-matter gate completed.'

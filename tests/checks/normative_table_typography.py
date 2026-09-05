@@ -19,10 +19,13 @@ LOCATOR = ROOT / "standards" / "locator-audit-typography-paragraphs.json"
 VALIDATION_POLICY = ROOT / "standards" / "validation-reference-policy.json"
 
 RULES = [
-    "font.size.reduced.table-caption",
+    "table.identification.font-size",
     "font.size.reduced.table-source",
 ]
-EXPECTED = {rule_id: {"pt": 10} for rule_id in RULES}
+EXPECTED = {
+    "table.identification.font-size": {"pt": 12},
+    "font.size.reduced.table-source": {"pt": 10},
+}
 
 
 def fail(message: str) -> None:
@@ -81,8 +84,11 @@ def main() -> None:
 
 
     reduced = ruleset(locator, "typography.reduced-font").get("rule_ids", [])
-    if not set(RULES) <= set(reduced):
-        fail("table reduced-font locator scope drifted")
+    title_size = ruleset(locator, "typography.table-identification-title").get("rule_ids", [])
+    if RULES[1] not in set(reduced):
+        fail("table source reduced-font locator scope drifted")
+    if RULES[0] not in set(title_size):
+        fail("table identification/title locator scope drifted")
 
     contract = load_full_contract()
     contract_rules = {rule["id"]: rule for rule in contract["rules"]}
@@ -113,7 +119,8 @@ def main() -> None:
     evidence: list[dict[str, Any]] = []
     for rule_id, marker_key in zip(RULES, ("caption", "table_source_marker"), strict=True):
         run = unique_run(runs, markers[marker_key])
-        delta = abs(run.font_size - 10.0)
+        expected_pt = float(EXPECTED[rule_id]["pt"])
+        delta = abs(run.font_size - expected_pt)
         evidence.append({
             "rule_id": rule_id,
             "status": "PASS" if delta <= font_tol else "FAIL",

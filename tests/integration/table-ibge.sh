@@ -11,13 +11,13 @@ trap cleanup EXIT INT TERM
 
 for token in '\toprule' '\midrule' '\bottomrule' 'row{even}' 'remark{Fonte}' 'remark{Nota}' 'tables = tabularray'; do
   grep -Fq "$token" "$fixture" || {
-    echo "table IBGE: structure required missing in the fixture: $token"
+    echo "IBGE table: required fixture structure is missing: $token"
     exit 1
   }
 done
 
 if grep -Eq '(^|[^[:alpha:]])(vlines|hlines)([^[:alpha:]]|$)' "$fixture"; then
-  echo 'Tabela IBGE: tabela numérica não pode usar fechamento lateral ou grade no corpo.'
+  echo 'IBGE table: numeric tables must not use closed side borders or a body grid.'
   exit 1
 fi
 
@@ -35,7 +35,7 @@ for engine in pdflatex lualatex; do
   warnings=$(grep -E 'LaTeX Warning:|Package [^ ]+ Warning:|Class [^ ]+ Warning:|Overfull \\hbox|Overfull \\vbox' "$job.log" || true)
   if [ -n "$warnings" ]; then
     printf '%s\n' "$warnings"
-    echo "$job: warning ou overflow não reconhecido."
+    echo "$job: unrecognized warning or overflow."
     exit 1
   fi
 
@@ -59,7 +59,7 @@ def assert_all(name, expected, tolerance=0.06):
 
 pt_per_bp = 72.27 / 72.0
 assert_all('UFC-IBGE-BODY-FONTSIZE', 12.0)
-assert_all('UFC-IBGE-CAPTION-FONTSIZE', 10.0 * pt_per_bp)
+assert_all('UFC-IBGE-CAPTION-FONTSIZE', 12.0 * pt_per_bp)
 assert_all('UFC-IBGE-SOURCE-FONTSIZE', 10.0 * pt_per_bp)
 assert_all('UFC-IBGE-NOTE-FONTSIZE', 10.0 * pt_per_bp)
 PY
@@ -90,8 +90,8 @@ for marker in (
     'Valores sintéticos para validação',
 ):
     if marker not in text:
-        raise SystemExit(f'{job}: content tabular missing: {marker}')
+        raise SystemExit(f'{job}: required table content is missing: {marker}')
 PY
 done
 
-echo 'Subconjunto tabular ibge gate completed.'
+echo 'IBGE table subset gate completed.'

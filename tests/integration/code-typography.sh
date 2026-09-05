@@ -42,7 +42,7 @@ def scalar(name):
     try:
         return float(value)
     except ValueError as exc:
-        raise SystemExit(f'{name}: valor inválido: {value}') from exc
+        raise SystemExit(f'{name}: invalid value: {value}') from exc
 
 
 def normalize_family(value):
@@ -53,9 +53,13 @@ code_family = normalize_family(marker('UFC-CODE-FAMILY'))
 algorithm_family = normalize_family(marker('UFC-ALGORITHM-FAMILY'))
 
 if code_family != text_family:
-    raise SystemExit(f'código mudou de família: texto={text_family}, código={code_family}')
+    raise SystemExit(
+        f'code family changed: text={text_family}, code={code_family}'
+    )
 if algorithm_family != text_family:
-    raise SystemExit(f'algoritmo mudou de família: texto={text_family}, algoritmo={algorithm_family}')
+    raise SystemExit(
+        f'algorithm family changed: text={text_family}, algorithm={algorithm_family}'
+    )
 
 for name in ('UFC-TEXT-FONTSIZE', 'UFC-CODE-FONTSIZE', 'UFC-ALGORITHM-FONTSIZE'):
     actual = scalar(name)
@@ -115,14 +119,14 @@ def locate_marker_line(marker):
         } for word in line_words]
         content = [word for word in data if not re.fullmatch(r'\d+:?', word['text'].strip())]
         if not content:
-            raise SystemExit(f'marker geometric without content: {marker}')
+            raise SystemExit(f'geometry marker has no content: {marker}')
         return {
             'content_x0': min(word['x0'] for word in content),
             'y0': min(word['y0'] for word in data),
             'x1': max(word['x1'] for word in data),
             'y1': max(word['y1'] for word in data),
         }
-    raise SystemExit(f'marker geometric missing: {marker}')
+    raise SystemExit(f'geometry marker missing: {marker}')
 
 
 def line_number_for(marker_box):
@@ -137,7 +141,7 @@ def line_number_for(marker_box):
         if re.fullmatch(r'\d+:?', word['text'].strip()):
             candidates.append(word)
     if not candidates:
-        raise SystemExit('número of linha not found junto ao marker geometric')
+        raise SystemExit('line number not found next to geometry marker')
     return min(candidates, key=lambda word: word['x0'])
 
 
@@ -146,8 +150,8 @@ for marker in ('UFC-CODE-GEOMETRY-MARKER', 'UFC-ALGORITHM-GEOMETRY-MARKER'):
     number = line_number_for(box)
     if number['x0'] < LEFT - TOL:
         raise SystemExit(
-            f"{marker}: número de linha invade margem esquerda: "
-            f"x={number['x0']:.2f}, limite={LEFT:.2f}"
+            f"{marker}: line number crosses the left margin: "
+            f"x={number['x0']:.2f}, limit={LEFT:.2f}"
         )
     if box['x1'] > A4_WIDTH - RIGHT + TOL:
         raise SystemExit(
@@ -160,4 +164,4 @@ PY
   done
 done
 
-echo 'Tipografia and geometria of code and algorithms gate completed.'
+echo 'Code and algorithm typography and geometry gate completed.'

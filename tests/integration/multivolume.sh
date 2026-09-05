@@ -30,7 +30,7 @@ for engine in pdflatex lualatex; do
   fi
 
   grep -Fq 'UFC-PAGE-AFTER-COVER=101' "$job.log" || {
-    echo "$job: initial-page was not preserved após a cover."
+    echo "$job: initial-page was not preserved after the cover."
     exit 1
   }
   grep -Fq 'UFC-PAGE-AFTER-TITLE=102' "$job.log" || {
@@ -38,7 +38,7 @@ for engine in pdflatex lualatex; do
     exit 1
   }
   grep -Fq 'UFC-TEXT-PAGE=102' "$job.log" || {
-    echo "$job: content textual não continuou in the page lógica 102."
+    echo "$job: textual content did not continue on logical page 102."
     exit 1
   }
 
@@ -62,14 +62,14 @@ norm = [
 text = ' '.join(norm)
 
 if len(norm) < 3:
-    raise SystemExit(f'{job}: expected cover, title page and content textual.')
+    raise SystemExit(f'{job}: expected cover, title page and textual content.')
 if 'curso de graduação em ciência da computação' not in norm[0]:
-    raise SystemExit(f'{job}: identificação completa of the curso missing of the cover.')
+    raise SystemExit(f'{job}: complete course identification is missing from the cover.')
 if text.count('volume 2') < 2:
-    raise SystemExit(f'{job}: volume não aparece in the cover and in the title page.')
+    raise SystemExit(f'{job}: volume is not present on both the cover and title page.')
 for marker in ('autor multivolume teste', 'trabalho multivolume de teste', 'marcador textual do volume dois'):
     if marker not in text:
-        raise SystemExit(f'{job}: content expected missing: {marker}')
+        raise SystemExit(f'{job}: expected content is missing: {marker}')
 PY
 done
 

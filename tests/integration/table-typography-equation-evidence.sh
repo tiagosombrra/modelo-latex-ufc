@@ -37,7 +37,7 @@ compile_fixture() {
     grep -vF -e 'Class abntexto-ufc Warning: Times New Roman not found; using TeX Gyre Termes' || true)
   if [ -n "$warnings" ]; then
     printf '%s\n' "$warnings"
-    echo "$job: warning ou overflow não reconhecido."
+    echo "$job: unrecognized warning or overflow."
     exit 1
   fi
 }

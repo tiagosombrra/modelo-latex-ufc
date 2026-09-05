@@ -149,12 +149,12 @@
         \ufc_meta_if_blank:nF {advisor}
           {
             \par\ufc_orientation_label:\c_colon_str\space
-            \ufc_meta_use:n {advisor}
+            \ufc_meta_use:n {advisor}.
           }
         \ufc_meta_if_blank:nF {coadvisor}
           {
             \par\ufc_coorientation_label:\c_colon_str\space
-            \ufc_meta_use:n {coadvisor}
+            \ufc_meta_use:n {coadvisor}.
           }
       }
   }

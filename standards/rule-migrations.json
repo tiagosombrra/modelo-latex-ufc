@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-09-05",
+  "purpose": "Preserve provenance when a previously active rule ID is retired because its semantic classification was incorrect.",
+  "migrations": [
+    {
+      "retired_id": "font.size.reduced.illustration-caption",
+      "replacement_id": "illustration.identification.font-size",
+      "status": "semantic-correction",
+      "retired_value": {
+        "pt": 10
+      },
+      "replacement_value": {
+        "pt": 12
+      },
+      "reason": "The retired reduced-font child conflated the upper identification/title with the lower legend/source reduced-font exception in UFC guidance.",
+      "decision": "docs/V3-OBJECT-TYPOGRAPHY-DECISION.md"
+    },
+    {
+      "retired_id": "font.size.reduced.table-caption",
+      "replacement_id": "table.identification.font-size",
+      "status": "semantic-correction",
+      "retired_value": {
+        "pt": 10
+      },
+      "replacement_value": {
+        "pt": 12
+      },
+      "reason": "The retired reduced-font child conflated the upper identification/title with the lower legend/source reduced-font exception in UFC guidance.",
+      "decision": "docs/V3-OBJECT-TYPOGRAPHY-DECISION.md"
+    }
+  ]
+}

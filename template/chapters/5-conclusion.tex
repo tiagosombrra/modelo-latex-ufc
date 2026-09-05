@@ -4,15 +4,15 @@ A classe reúne opções de perfil e módulos editoriais para que o mesmo projet
 
 \subsection{Perfis de documento}
 
-A opção \texttt{tipo} seleciona o perfil acadêmico. A matriz de certificação da V2 exercita TCC de graduação, TCC de especialização, dissertação, tese, projeto de pesquisa e projeto de pesquisa anonimizado.
+A opção \texttt{type} seleciona o perfil acadêmico. A matriz de certificação atual exercita \texttt{undergraduate-capstone}, \texttt{specialization-capstone}, \texttt{masters-thesis}, \texttt{doctoral-thesis}, \texttt{research-project} e \texttt{anonymized-research-project}.
 
 \guiapolitica{Perfis controlam a aplicabilidade de elementos e metadados. O objetivo é evitar que o usuário tenha de remover manualmente partes da classe para adaptar um TCC a uma dissertação, tese ou projeto.}
 
-\guianormativa{ABNT NBR 15287:2025}{Os perfis \texttt{projeto} e \texttt{projetoanonimizado} usam a estrutura de projeto de pesquisa adotada pela V2. O perfil anonimizado adiciona uma política técnica de ocultação de dados pessoais para processos que exijam avaliação sem identificação; essa anonimização não é apresentada como regra geral da NBR 15287 \parencite{abnt15287}.}
+\guianormativa{ABNT NBR 15287:2025}{Os perfis \texttt{research-project} e \texttt{anonymized-research-project} usam a estrutura de projeto de pesquisa adotada pelo projeto. O perfil anonimizado adiciona uma política técnica de ocultação de dados pessoais para processos que exijam avaliação sem identificação; essa anonimização não é apresentada como regra geral da NBR 15287 \parencite{abnt15287}.}
 
 \subsection{Fontes e motores de compilação}
 
-A opção \texttt{font=times|arial} seleciona a família textual desejada. A opção \texttt{fonte-estrita} determina se a identidade literal é obrigatória ou se o ambiente pode usar fallback portátil.
+A opção \texttt{font=times|arial} seleciona a família textual desejada. A opção \texttt{strict-font} determina se a identidade literal é obrigatória ou se o ambiente pode usar fallback portátil.
 
 \guiainstitucional{A política tipográfica UFC adotada pelo projeto trabalha com Arial ou Times New Roman. A certificação literal é executada em Windows com pdfLaTeX e LuaLaTeX; as fontes Microsoft não são redistribuídas pelo repositório.}
 
@@ -24,7 +24,7 @@ O cabeçalho de \texttt{main.tex} declara \texttt{pdfstandard=A-2b}. A suíte ve
 
 \guiainstitucional{O fluxo de depósito acompanhado pelo projeto exige PDF/A nos casos institucionais aplicáveis. As páginas atuais do Sistema de Bibliotecas devem ser verificadas conforme o tipo de trabalho \parencite{ufcdepositotcc2026,ufcdepositopos2026}.}
 
-\guiapolitica{A escolha do perfil específico PDF/A-2b para o documento de referência e para a certificação da V2 é uma política técnica do projeto; ela não é apresentada como uma afirmação de que toda norma ABNT exige especificamente PDF/A-2b.}
+\guiapolitica{A escolha do perfil específico PDF/A-2b para o documento de referência e para a certificação é uma política técnica do projeto; ela não é apresentada como uma afirmação de que toda norma ABNT exige especificamente PDF/A-2b.}
 
 \subsection{Referências}
 
@@ -42,7 +42,7 @@ O glossário é um elemento opcional para definir termos especializados, siglas 
 
 Apêndices contêm material complementar elaborado pelo próprio autor e são identificados em sequência própria.
 
-\guianormativa{estrutura pós-textual adotada pela V2}{Cada apêndice inicia em página própria. No escopo auditado, seu cabeçalho é centralizado, em letras maiúsculas, negrito e tamanho 12.}
+\guianormativa{estrutura pós-textual adotada pelo projeto}{Cada apêndice inicia em página própria. No escopo auditado, seu cabeçalho é centralizado, em letras maiúsculas, negrito e tamanho 12.}
 
 \guiaexemplo{Este documento possui apêndices com material textual, questionário, código-fonte e orientação para documento externo autoral. Eles existem para exercitar diferentes comprimentos e conteúdos.}
 
@@ -50,7 +50,7 @@ Apêndices contêm material complementar elaborado pelo próprio autor e são id
 
 Anexos são usados para material complementar de autoria externa ou não produzido pelo autor do trabalho.
 
-\guianormativa{estrutura pós-textual adotada pela V2}{Cada anexo inicia em página própria e usa a mesma política de apresentação do cabeçalho exercitada para apêndices.}
+\guianormativa{estrutura pós-textual adotada pelo projeto}{Cada anexo inicia em página própria e usa a mesma política de apresentação do cabeçalho exercitada para apêndices.}
 
 \guiaexemplo{Se um documento externo em PDF precisar ser anexado, verifique legibilidade, direitos de uso, orientação de página e compatibilidade com o arquivo final. O exemplo deste projeto documenta a rota sem redistribuir material externo desnecessário.}
 
@@ -58,7 +58,7 @@ Anexos são usados para material complementar de autoria externa ou não produzi
 
 O índice remissivo é diferente do sumário: ele organiza termos e assuntos para facilitar a localização de ocorrências no documento.
 
-\guianormativa{ABNT NBR 6034:2004}{O índice é elemento opcional e possui norma específica de apresentação. A V2 demonstra o recurso com \texttt{imakeidx} e verifica o título e sua composição no PDF final \parencite{abnt6034}.}
+\guianormativa{ABNT NBR 6034:2004}{O índice é elemento opcional e possui norma específica de apresentação. A classe demonstra o recurso com \texttt{imakeidx} e verifica o título e sua composição no PDF final \parencite{abnt6034}.}
 
 \subsection{Lombada}
 

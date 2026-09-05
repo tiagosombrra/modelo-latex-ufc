@@ -1,0 +1,21 @@
+\DocumentMetadata{
+  lang = pt-BR,
+  pdfstandard = A-2b,
+  pdfversion = 1.7
+}
+
+\documentclass{abntexto-ufc}
+
+\ufcAddBibliographyResource{tests/fixtures/references.bib}
+
+\begin{document}
+\textual
+
+\noindent LQREVBEFORE introduz uma citação direta longa com fonte e localizador controlados.
+
+\Enquote{LQREVOPEN este conteúdo sintético possui extensão suficiente para formar uma citação direta longa no PDF final e permitir que a regressão verifique, além da apresentação geométrica já coberta por outro cenário, a relação entre o final da citação e a chamada bibliográfica. O texto continua deliberadamente por várias linhas para manter o mesmo caminho público de composição usado por uma citação longa real, sem inserir pontuação artificial no fechamento da citação LQREVCLOSE}
+\cite[42]{silva2020}.
+
+\noindent LQREVAFTER encerra o cenário controlado.
+
+\end{document}

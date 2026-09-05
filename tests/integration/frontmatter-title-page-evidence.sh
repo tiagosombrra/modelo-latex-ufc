@@ -46,6 +46,22 @@ compile_fixture "$academic_fixture" "$academic_job"
 compile_fixture "$project_fixture" "$project_job"
 compile_fixture "$anonymized_fixture" "$anonymized_job"
 
+pdftotext -layout "$academic_job.pdf" /tmp/abntexto-ufc-title-page-academic.txt
+python3 <<'PY'
+import re
+from pathlib import Path
+
+text = Path('/tmp/abntexto-ufc-title-page-academic.txt').read_text(
+    encoding='utf-8', errors='replace'
+)
+flat = re.sub(r'\s+', ' ', text)
+for marker in ('Orientador: TPADVISOR.', 'Coorientador: TPCOADVISOR.'):
+    if marker not in flat:
+        raise SystemExit(
+            f'Title page audit failed: final advisor punctuation is missing: {marker}'
+        )
+PY
+
 mkdir -p "$(dirname "$evidence")"
 python3 tests/checks/normative_frontmatter_title_page.py \
   "$academic_job.pdf" \

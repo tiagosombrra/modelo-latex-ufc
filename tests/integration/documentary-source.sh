@@ -53,29 +53,38 @@ for marker in (
     'adaptado de',
     'silva',
     '2026',
+    'p. 42',
     'anexo a',
     'documento com referência própria',
     'manual de dados de teste',
     'editora acadêmica',
 ):
     if marker.casefold() not in fold:
-        raise SystemExit(f'marker documental missing: {marker}')
+        raise SystemExit(f'documentary marker missing: {marker}')
 
-source_match = re.search(r'adaptado de.{0,120}silva.{0,120}2026', fold)
-if not source_match:
-    raise SystemExit('external source was not presented in form of citation author-date.')
-
+source_pos = fold.find('adaptado de')
 annex_pos = fold.find('anexo a')
+if source_pos < 0 or annex_pos < source_pos:
+    raise SystemExit('external source block was not located before the annex')
+source_segment = fold[source_pos:annex_pos]
+for token in ('silva', '2026', 'p. 42'):
+    if token.casefold() not in source_segment:
+        raise SystemExit(
+            f'external illustration source is missing required citation evidence: {token}'
+        )
+
 fullref_pos = fold.find('manual de dados de teste')
-if annex_pos < 0 or fullref_pos < annex_pos:
-    raise SystemExit('The annex-specific bibliographic reference did not remain inside the annex.')
+if fullref_pos < annex_pos:
+    raise SystemExit('annex-specific bibliographic reference did not remain inside the annex')
 
 if 'referências' in fold[annex_pos:]:
-    raise SystemExit('fixture criou list global of references; o caso deve permanecer local ao annex.')
+    raise SystemExit(
+        'fixture created a global reference list; this case must remain local to the annex'
+    )
 PY
 
-  echo 'VALIDATION-EVIDENCE rule=illustration.source.external-citation status=PASS expected=author-date-citation measured=adapted-source-citation-present'
-
+  echo 'VALIDATION-EVIDENCE rule=illustration.source.external-citation status=PASS expected=author-date-citation-with-locator measured=adapted-source-citation-p.42-present'
+  echo 'LIBRARIAN-REVIEW-EVIDENCE item=23 status=PASS locator=p.42 context=external-illustration-source'
 done
 
 echo 'Documentary sources gate completed.'

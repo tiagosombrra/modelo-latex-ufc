@@ -21,7 +21,7 @@ LOCATOR_FINAL = ROOT / "standards" / "locator-audit-final.json"
 VALIDATION_POLICY = ROOT / "standards" / "validation-reference-policy.json"
 
 RULES = [
-    "font.size.reduced.illustration-caption",
+    "illustration.identification.font-size",
     "font.size.reduced.illustration-source",
     "illustration.caption.bounds",
     "illustration.source.bounds",
@@ -32,7 +32,7 @@ RULES = [
 ]
 
 EXPECTED = {
-    "font.size.reduced.illustration-caption": {"pt": 10},
+    "illustration.identification.font-size": {"pt": 12},
     "font.size.reduced.illustration-source": {"pt": 10},
     "illustration.caption.bounds": {"caption_within_object_width": True},
     "illustration.source.bounds": {"source_within_object_width": True},
@@ -138,8 +138,11 @@ def main() -> None:
 
 
     reduced = ruleset(loc_typ, "typography.reduced-font").get("rule_ids", [])
-    if not {RULES[0], RULES[1]} <= set(reduced):
-        fail("illustration reduced-font locator scope drift")
+    title_size = ruleset(loc_typ, "typography.illustration-identification-title").get("rule_ids", [])
+    if RULES[1] not in set(reduced):
+        fail("illustration source reduced-font locator scope drift")
+    if RULES[0] not in set(title_size):
+        fail("illustration identification/title locator scope drift")
     if ruleset(loc_final, "objects.illustration-bounds").get("rule_ids") != RULES[2:5]:
         fail("illustration bounds locator scope drift")
     if ruleset(loc_obj, "objects.illustration-presentation").get("rule_ids") != RULES[5:8]:
@@ -201,7 +204,7 @@ def main() -> None:
 
     cap_run = unique_run(runs, markers["caption_start"])
     src_run = unique_run(runs, markers["source_start"])
-    cap_font_delta = abs(cap_run.font_size - 10.0)
+    cap_font_delta = abs(cap_run.font_size - 12.0)
     src_font_delta = abs(src_run.font_size - 10.0)
 
     def within(box: Box) -> tuple[bool, dict[str, float]]:

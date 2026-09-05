@@ -34,8 +34,8 @@ def main() -> None:
         fail(f"expected 29 current compatibility parent rules, got {len(parents)}")
     if "project.standard" in parents:
         fail("retired project.standard must not remain in the compatibility catalog")
-    if len(atomic) != 100:
-        fail(f"expected 100 N3 atomic rules, got {len(atomic)}")
+    if len(atomic) != 98:
+        fail(f"expected 98 N3 atomic rules after object-title migration, got {len(atomic)}")
 
     aliases = contract["compatibility_aliases"]
     if "summary.word-count" not in aliases:

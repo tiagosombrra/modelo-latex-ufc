@@ -27,7 +27,7 @@ warnings=$(grep -E 'LaTeX Warning:|Package [^ ]+ Warning:|Class [^ ]+ Warning:|O
   grep -vF -e 'Class abntexto-ufc Warning: Times New Roman not found; using TeX Gyre Termes' || true)
 if [ -n "$warnings" ]; then
   printf '%s\n' "$warnings"
-  echo "$job: warning ou overflow não reconhecido."
+  echo "$job: unrecognized warning or overflow."
   exit 1
 fi
 
@@ -35,4 +35,4 @@ python3 tests/checks/normative_table_ibge_vector.py "$job.pdf" \
   --json artifacts/normative-layout/table-ibge-vector-final-pdf.json \
   --commit-sha "${SOURCE_COMMIT_SHA:-${GITHUB_SHA:-}}"
 
-echo 'Evidence for vector geometry of tables ibge gate completed.'
+echo 'IBGE table vector-geometry evidence gate completed.'

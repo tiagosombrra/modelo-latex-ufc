@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-08-24",
+  "reviewed_at": "2026-09-05",
   "purpose": "N1 incremental locator classification for body typography, reduced-font exceptions, spacing and paragraphs.",
   "rulesets": [
     {
@@ -28,9 +28,7 @@
         "font.size.reduced.footnote",
         "font.size.reduced.pagination",
         "font.size.reduced.catalog-card",
-        "font.size.reduced.illustration-caption",
         "font.size.reduced.illustration-source",
-        "font.size.reduced.table-caption",
         "font.size.reduced.table-source"
       ],
       "current_locator": "UFC 4.1(c)",
@@ -41,6 +39,40 @@
           "locator": "4.1(c), p. 64",
           "status": "VERIFIED",
           "checked_at": "2026-08-24",
+          "basis_url": "https://biblioteca.ufc.br/wp-content/uploads/2022/05/guianormalizacaotrabalhosacademicos-17.05.2022.pdf"
+        }
+      ]
+    },
+    {
+      "id": "typography.illustration-identification-title",
+      "rule_ids": [
+        "illustration.identification.font-size"
+      ],
+      "current_locator": "Guia UFC 2022, 4.1(c) e 4.9(c-e)",
+      "status": "VERIFIED",
+      "source_checks": [
+        {
+          "source_id": "ufc-guia-trabalhos-2022",
+          "locator": "4.1(c); 4.9(c-e)",
+          "status": "VERIFIED",
+          "checked_at": "2026-09-05",
+          "basis_url": "https://biblioteca.ufc.br/wp-content/uploads/2022/05/guianormalizacaotrabalhosacademicos-17.05.2022.pdf"
+        }
+      ]
+    },
+    {
+      "id": "typography.table-identification-title",
+      "rule_ids": [
+        "table.identification.font-size"
+      ],
+      "current_locator": "Guia UFC 2022, 4.1(c) e 4.10(b-c)",
+      "status": "VERIFIED",
+      "source_checks": [
+        {
+          "source_id": "ufc-guia-trabalhos-2022",
+          "locator": "4.1(c); 4.10(b-c)",
+          "status": "VERIFIED",
+          "checked_at": "2026-09-05",
           "basis_url": "https://biblioteca.ufc.br/wp-content/uploads/2022/05/guianormalizacaotrabalhosacademicos-17.05.2022.pdf"
         }
       ]

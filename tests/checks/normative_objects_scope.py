@@ -12,9 +12,7 @@ from normative_full import load_full_contract
 
 TARGET_CATEGORIES = {"objects", "equations", "code-algorithms"}
 CROSS_CUTTING_RULE_IDS = {
-    "font.size.reduced.illustration-caption",
     "font.size.reduced.illustration-source",
-    "font.size.reduced.table-caption",
     "font.size.reduced.table-source",
 }
 EXPECTED_PROJECT_POLICY = {

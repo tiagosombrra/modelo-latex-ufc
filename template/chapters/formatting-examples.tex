@@ -6,7 +6,7 @@ Esta seção funciona como catálogo visual e corpus de regressão. Cada grupo a
 
 \guianormativa{ABNT NBR 14724:2024 e NBR 10520:2023}{Ilustrações devem ser identificadas de modo consistente e apresentar indicação de fonte. Quando a fonte for externa, sua indicação deve ser compatível com o sistema de citações adotado \parencite{abnt14724,abnt10520}.}
 
-\guiapolitica{Na V2, título, fonte e nota são vinculados à largura física do objeto. Os testes verificam que esses elementos não ultrapassem horizontalmente a largura da ilustração. O tamanho reduzido adotado para títulos e fontes de objetos é 10 pt no escopo institucional do projeto.}
+\guiapolitica{A classe vincula título, fonte e nota à largura física do objeto. Os testes verificam que esses elementos não ultrapassem horizontalmente a largura da ilustração. A tipografia do título superior e dos blocos inferiores de fonte, legenda ou nota é validada separadamente; não ajuste seus tamanhos manualmente no conteúdo.}
 
 \subsection{Figuras em diferentes larguras e formatos}
 
@@ -72,7 +72,7 @@ As Figuras~\ref{fig:media}, \ref{fig:larga} e~\ref{fig:png-fluxo} exercitam larg
     {\fbox{\parbox[c][5cm][c]{0.62\linewidth}{\centering Execute \texttt{make reference-assets} para baixar a fotografia licenciada da Reitoria da UFC.}}}
 \end{ufcobject}
 
-\guiapolitica{Fotografias externas de demonstração não são incorporadas aos bundles públicos/CTAN sem controle de licença. O comando \texttt{make reference-assets} baixa os arquivos de referência e verifica sua integridade; as licenças ficam registradas separadamente.}
+\guiapolitica{Fotografias externas de demonstração não são incorporadas aos bundles públicos/CTAN sem controle de licença. O comando \texttt{make reference-assets} baixa os arquivos de referência e verifica sua integridade; as licenças ficam registradas separadamente. Quando a fonte externa possuir paginação ou outro localizador estável aplicável, inclua também esse localizador na indicação de fonte do objeto.}
 
 \subsection{Gráficos}
 
@@ -139,7 +139,7 @@ O projeto distingue quadros de tabelas numéricas. Quadros são úteis para orga
 
 \subsection{Tabelas numéricas}
 
-\guianormativa{Normas de Apresentação Tabular do IBGE, 3. ed.}{Para tabelas numéricas, a V2 exercita laterais abertas, ausência de grade no corpo e regras horizontais superior, de separação do cabeçalho e inferior \parencite{ibge1993}.}
+\guianormativa{Normas de Apresentação Tabular do IBGE, 3. ed.}{Para tabelas numéricas, o documento de referência exercita laterais abertas, ausência de grade no corpo e regras horizontais superior, de separação do cabeçalho e inferior \parencite{ibge1993}.}
 
 \begin{table}[htbp]
 \centering
@@ -169,7 +169,7 @@ Delta & 2026 & 18 \\
 
 \subsection{Código-fonte}
 
-Código-fonte não é convertido artificialmente em uma regra ABNT específica. A V2 o trata como objeto acadêmico com identificação, fonte, numeração e largura controladas, oferecendo módulos de apresentação configuráveis.
+Código-fonte não é convertido artificialmente em uma regra ABNT específica. A classe o trata como objeto acadêmico com identificação, fonte, numeração e largura controladas, oferecendo módulos de apresentação configuráveis.
 
 \guiapolitica{O documento de referência usa \texttt{listings}. A política de numeração das linhas pode variar conforme a finalidade do exemplo; o importante é manter legibilidade, identificação consistente e fonte do conteúdo quando aplicável.}
 
@@ -215,7 +215,7 @@ Os Códigos~\ref{cod:python-numerado}, \ref{cod:cpp-sem-numero}, \ref{cod:python
 
 \subsection{Algoritmos}
 
-Algoritmos em pseudocódigo são apresentados como objetos próprios da V2. O módulo recomendado no documento de referência é \texttt{algpseudocodex}.
+Algoritmos em pseudocódigo são apresentados como objetos próprios da classe. O módulo recomendado no documento de referência é \texttt{algpseudocodex}.
 
 \guiapolitica{Numeração de linhas em pseudocódigo é uma opção editorial do exemplo e não uma exigência normativa geral. A identificação e a fonte continuam sendo tratadas de forma consistente com os demais objetos do template.}
 
@@ -257,7 +257,7 @@ A Equação~\ref{eq:media-exemplo} exemplifica uma expressão numerada e referen
 Uma citação direta longa também é exercitada no documento de referência. O conteúdo abaixo é sintético e existe apenas para permitir a verificação geométrica do bloco:
 
 \Enquote{A composição tipográfica de um documento científico deve ser tratada como parte de um processo reprodutível de edição, revisão e validação, mantendo conteúdo e apresentação suficientemente separados para que mudanças editoriais possam ser verificadas de forma sistemática.}
-\guianormativa{ABNT NBR 10520:2023}{O bloco acima exercita a apresentação de citação direta longa descrita na Seção~\ref{sec:citacoes-referencias}: recuo de 4 cm, fonte reduzida, espaço simples e ausência de aspas no PDF final \parencite{abnt10520}.}
+\guianormativa{ABNT NBR 10520:2023}{O bloco acima exercita a apresentação de citação direta longa descrita na Seção~\ref{sec:citacoes-referencias}: recuo de 4 cm, fonte reduzida, espaço simples e ausência de aspas no PDF final \parencite{abnt10520}. Por ser conteúdo sintético de teste, ele não recebe página ou localizador inventado; citações diretas reais devem informar o localizador aplicável quando a fonte o fornecer.}
 
 Exemplo de alíneas e subalíneas:
 

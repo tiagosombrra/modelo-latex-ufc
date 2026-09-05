@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-08-26",
+  "reviewed_at": "2026-09-05",
   "component": "illustration-final-pdf",
-  "purpose": "Bounded final-PDF evidence for the eight residual illustration typography, bounds and relative-position predicates.",
+  "purpose": "Bounded final-PDF evidence for upper illustration identification/title size, reduced source size, bounds and relative-position predicates.",
   "rules": [
-    "font.size.reduced.illustration-caption",
+    "illustration.identification.font-size",
     "font.size.reduced.illustration-source",
     "illustration.caption.bounds",
     "illustration.source.bounds",
@@ -14,14 +14,14 @@
     "illustration.note.position"
   ],
   "locator_rulesets": {
-    "font.size.reduced.illustration-caption": "typography.reduced-font",
     "font.size.reduced.illustration-source": "typography.reduced-font",
     "illustration.caption.bounds": "objects.illustration-bounds",
     "illustration.source.bounds": "objects.illustration-bounds",
     "illustration.note.bounds": "objects.illustration-bounds",
     "illustration.identification.position": "objects.illustration-presentation",
     "illustration.source.position": "objects.illustration-presentation",
-    "illustration.note.position": "objects.illustration-presentation"
+    "illustration.note.position": "objects.illustration-presentation",
+    "illustration.identification.font-size": "typography.illustration-identification-title"
   },
   "fixture": {
     "path": "tests/documents/illustration-final-pdf.tex",
@@ -43,6 +43,6 @@
   "measurement": {
     "bounds": "full rendered block must stay within the controlled object left/right edges using the existing horizontal tolerance",
     "positions": "relative ordering only; no exact vertical gap is frozen",
-    "typography": "caption/source marker runs are measured with pdftohtml XML using the existing font-size tolerance"
+    "typography": "upper identification/title is measured at 12 pt and lower source at 10 pt using pdftohtml XML and the shared font-size tolerance"
   }
 }

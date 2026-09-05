@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-08-26",
+  "reviewed_at": "2026-09-05",
   "component": "table-typography-final-pdf",
   "campaign_id": "table-final-pdf",
-  "purpose": "Measure the two reduced-size table typography predicates directly from an isolated final PDF using the frozen typography validation reference.",
+  "purpose": "Measure upper table identification/title at 12 pt and lower source at reduced 10 pt directly from an isolated final PDF.",
   "rules": [
-    "font.size.reduced.table-caption",
+    "table.identification.font-size",
     "font.size.reduced.table-source"
   ],
   "fixture": {
@@ -18,11 +18,14 @@
     "caption": "UFCTABLECAPTION",
     "table_source_marker": "UFCTABLESOURCE"
   },
-  "locator_ruleset": "typography.reduced-font",
   "measurement": {
     "tool": "pdftohtml -xml -zoom 1.0",
     "font_size_tolerance_source": "standards/validation-reference-policy.json",
     "family_is_observational_only": true
   },
-  "proof_state_changed": false
+  "proof_state_changed": false,
+  "locator_rulesets": {
+    "table.identification.font-size": "typography.table-identification-title",
+    "font.size.reduced.table-source": "typography.reduced-font"
+  }
 }

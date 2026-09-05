@@ -31,7 +31,9 @@
       {
         \tl_gput_right:cn { g__tblr_theme_#1_code_tl }
           {
-            \SetTblrStyle{caption,lasthead,capcont}{font=\abntsmall}
+            % Keep the upper table identification/title at body size while
+            % lower continuation/source/note text remains reduced.
+            \SetTblrStyle{caption,lasthead,capcont}{font=\normalsize}
             \SetTblrStyle{firsthead-text,lasthead-text,conthead-text,lastfoot}{font=\abntsmall}
           }
       }

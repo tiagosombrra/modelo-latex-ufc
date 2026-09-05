@@ -23,7 +23,7 @@ warnings=$(grep -E 'LaTeX Warning:|Package [^ ]+ Warning:|Class [^ ]+ Warning:|O
   grep -vF -e 'Class abntexto-ufc Warning: Times New Roman not found; using TeX Gyre Termes' || true)
 if [ -n "$warnings" ]; then
   printf '%s\n' "$warnings"
-  echo "$job: warning ou overflow não reconhecido."
+  echo "$job: unrecognized warning or overflow."
   exit 1
 fi
 
@@ -31,4 +31,4 @@ python3 tests/checks/normative_vector_rule_validation.py "$job.pdf" \
   --json artifacts/normative-layout/vector-rule-validation-calibration.json \
   --commit-sha "${SOURCE_COMMIT_SHA:-${GITHUB_SHA:-}}"
 
-echo 'Calibração for vector geometry gate completed.'
+echo 'Vector-geometry calibration gate completed.'

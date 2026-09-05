@@ -26,7 +26,7 @@ for engine in pdflatex lualatex; do
     grep -vF -e 'Class abntexto-ufc Warning: Times New Roman not found; using TeX Gyre Termes' || true)
   if [ -n "$warnings" ]; then
     printf '%s\n' "$warnings"
-    echo "$job: warning ou overflow não reconhecido."
+    echo "$job: unrecognized warning or overflow."
     exit 1
   fi
 
@@ -56,12 +56,14 @@ def close(name, actual, expected, tolerance=0.06):
 pt_per_cm = 72.27 / 2.54
 pt_per_bp = 72.27 / 72.0
 expected_width = 6.0 * pt_per_cm
+expected_body = 12.0 * pt_per_bp
 expected_small = 10.0 * pt_per_bp
 
-close('largura física do objeto', dim('UFC-OBJECT-CONTENT-WIDTH'), expected_width)
+close('object physical width', dim('UFC-OBJECT-CONTENT-WIDTH'), expected_width)
 for name in ('UFC-OBJECT-TITLE-WIDTH', 'UFC-OBJECT-SOURCE-WIDTH', 'UFC-OBJECT-NOTE-WIDTH'):
     close(name, dim(name), expected_width)
-for name in ('UFC-OBJECT-TITLE-FONTSIZE', 'UFC-OBJECT-SOURCE-FONTSIZE', 'UFC-OBJECT-NOTE-FONTSIZE'):
+close('UFC-OBJECT-TITLE-FONTSIZE', scalar('UFC-OBJECT-TITLE-FONTSIZE'), expected_body)
+for name in ('UFC-OBJECT-SOURCE-FONTSIZE', 'UFC-OBJECT-NOTE-FONTSIZE'):
     close(name, scalar(name), expected_small)
 PY
 

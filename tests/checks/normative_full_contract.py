@@ -12,8 +12,20 @@ sys.path.insert(0, str(ROOT / "tools"))
 from normative_catalog import load_catalog
 from normative_full import full_rule_map, load_full_contract
 
-BASE_RULE_COUNT = 100
+BASE_RULE_COUNT = 98
 MINIMUM_EXTENSION_COUNT = 23
+
+PRE_ARTICLE_RUNTIME_PHASES = {
+    "regression-audit",
+    "core-corrections",
+    "reference-pdf-validation",
+}
+ARTICLE_RUNTIME_OR_LATER_PHASES = {
+    "scientific-article",
+    "final-certification",
+    "release",
+}
+READABLE_V3_PHASES = PRE_ARTICLE_RUNTIME_PHASES | ARTICLE_RUNTIME_OR_LATER_PHASES
 
 
 def fail(message: str) -> None:
@@ -41,17 +53,27 @@ def main() -> None:
     article_rules = sorted(rule_id for rule_id in rules if rule_id.startswith("article."))
     roadmap = json.loads((ROOT / "release" / "v3-roadmap.json").read_text(encoding="utf-8"))
     phase = roadmap.get("phase")
-    if article_rules and phase not in {"V3-A1", "V3-A2"}:
-        fail("article rules are active outside the article roadmap phases")
-    if phase == "V3-A1":
-        if not article_rules:
-            fail("V3-A1 requires the source-backed article rule contract")
+    if phase not in READABLE_V3_PHASES:
+        fail(f"unknown readable V3 roadmap phase: {phase}")
+    if not article_rules:
+        fail("retained scientific-article source contract disappeared")
+
+    # The article authority contract was reconstructed before runtime work began.
+    # During shared-foundation regression/correction/reference validation, retain
+    # that contract but forbid executable article validation or proof promotion.
+    if phase in PRE_ARTICLE_RUNTIME_PHASES:
         for rule_id in article_rules:
             validation = rules[rule_id]["validation"]
             if validation["mode"] not in {"manual", "conditional-manual"}:
-                fail(f"{rule_id}: A1 must not claim executable article validation")
+                fail(
+                    f"{rule_id}: pre-article phases must not claim executable "
+                    "article validation"
+                )
             if validation["checks"] != ["article.source-review"]:
-                fail(f"{rule_id}: A1 article evidence must be source-review only")
+                fail(
+                    f"{rule_id}: pre-article phases must retain source-review-only "
+                    "article evidence"
+                )
 
     expected = {
         "pagination.frontmatter.counted-not-numbered": {
@@ -141,7 +163,7 @@ def main() -> None:
         "Full normative contract passed: "
         f"{len(rules)} atomic rules, {len(extension_ids)} extensions "
         f"across {len(contract.get('coverage_manifests', []))} manifests, "
-        f"{len(not_applicable)} explicitly not-applicable."
+        f"{len(not_applicable)} explicitly not-applicable; phase={phase}."
     )
 
 

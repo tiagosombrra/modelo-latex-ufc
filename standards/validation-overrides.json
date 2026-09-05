@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-09-03",
+  "reviewed_at": "2026-09-05",
   "purpose": "Rule-local validation ownership for atomic rules whose normative value and provenance stay inherited while their proof-contributing evidence differs from the aggregate parent.",
   "overrides": {
     "font.size.reduced.catalog-card": {

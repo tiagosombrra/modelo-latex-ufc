@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-08-22",
+  "reviewed_at": "2026-09-05",
   "purpose": "N4 documentary coverage rules.",
   "rules": [
     {
@@ -300,6 +300,48 @@
       "applicability": {
         "multiple_volumes": true
       }
+    },
+    {
+      "id": "illustration.identification.font-size",
+      "category": "objects",
+      "requirement": "A identificação/título superior da ilustração usa o tamanho-base de 12 pt; a exceção de tamanho reduzido aplica-se aos textos auxiliares inferiores previstos pelo guia.",
+      "locator": "Guia UFC 2022, 4.1(c) e 4.9(c-e)",
+      "normativity": "required",
+      "kind": "font-size",
+      "values": {
+        "pt": 12
+      },
+      "validation": {
+        "mode": "automatic-partial",
+        "checks": [
+          "object-geometry"
+        ]
+      },
+      "scope": "institutional",
+      "sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
+    },
+    {
+      "id": "table.identification.font-size",
+      "category": "objects",
+      "requirement": "A identificação/título superior da tabela usa o tamanho-base de 12 pt; a exceção de tamanho reduzido aplica-se aos textos auxiliares inferiores previstos pelo guia.",
+      "locator": "Guia UFC 2022, 4.1(c) e 4.10(b-c)",
+      "normativity": "required",
+      "kind": "font-size",
+      "values": {
+        "pt": 12
+      },
+      "validation": {
+        "mode": "automatic-partial",
+        "checks": [
+          "object-geometry"
+        ]
+      },
+      "scope": "institutional",
+      "sources": [
+        "ufc-guia-trabalhos-2022"
+      ]
     }
   ]
 }

@@ -4,8 +4,8 @@ set -eu
 fixture="tests/documents/mainmatter-direct-citation-source-test.tex"
 job="validation-direct-citation-source"
 evidence="artifacts/normative-textual/direct-citation-source.json"
-latex_log="/tmp/abntexto-ufc-v2-direct-citation-source.log"
-biber_log="/tmp/abntexto-ufc-v2-direct-citation-source-biber.log"
+latex_log="/tmp/abntexto-ufc-v3-direct-citation-source.log"
+biber_log="/tmp/abntexto-ufc-v3-direct-citation-source-biber.log"
 
 cleanup() {
   rm -f "$job.aux" "$job.bbl" "$job.bcf" "$job.blg" "$job.log" \
@@ -44,7 +44,7 @@ warnings=$(grep -E 'LaTeX Warning:|Package [^ ]+ Warning:|Class [^ ]+ Warning:|O
   grep -vF -e 'Class abntexto-ufc Warning: Times New Roman not found; using TeX Gyre Termes' || true)
 if [ -n "$warnings" ]; then
   printf '%s\n' "$warnings"
-  echo "Atribuição of source in direct quotation audit failed: unrecognized warning or overflow in $fixture."
+  echo "Direct-citation source audit failed: unrecognized warning or overflow in $fixture."
   exit 1
 fi
 
@@ -55,8 +55,8 @@ python3 tests/checks/normative_direct_citation_source.py \
   --commit-sha "${SOURCE_COMMIT_SHA:-${GITHUB_SHA:-}}"
 
 test -s "$evidence" || {
-  echo 'Atribuição of source in direct quotation audit failed: JSON evidence was not generated.'
+  echo 'Direct-citation source audit failed: JSON evidence was not generated.'
   exit 1
 }
 
-echo 'Evidence for atribuição of source in direct quotation gate completed.'
+echo 'Direct-citation source evidence gate completed.'

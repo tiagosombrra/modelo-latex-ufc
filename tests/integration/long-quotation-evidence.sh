@@ -54,3 +54,6 @@ test -s "$reduced_evidence" || {
 }
 
 echo 'LONG-QUOTATION-EVIDENCE-GATE status=PASS'
+
+# Keep reviewer-specific citation/locator evidence separate from the geometric normative scenario.
+sh tests/integration/long-quotation-citation-evidence.sh

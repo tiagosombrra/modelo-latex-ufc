@@ -1,21 +1,45 @@
 # Engineering Language Policy
 
-Updated: 2026-09-04
+Updated: 2026-09-05
 
-`abntexto-ufc` v3 uses English for every project-owned engineering surface.
+`abntexto-ufc` v3 uses English for every project-owned engineering surface: repository paths and filenames, the LaTeX project API and internal identifiers, source comments, technical diagnostics, scripts, tests, workflows, validator controls/UI, JSON/schema terminology, and active engineering documentation.
 
-This includes repository paths and filenames, the LaTeX project API and internal identifiers, source comments, technical diagnostics, scripts, tests, workflows, validator controls and technical UI, JSON/schema terminology, and active engineering documentation.
+Portuguese remains valid when it is academic or authoritative content rather than project engineering nomenclature: rendered academic prose and headings, sample metadata values, bibliography data, official UFC/ABNT/CAPES names or wording, literal Portuguese output under test, and identifiers owned by an upstream dependency at an explicit integration boundary.
 
-Portuguese remains valid when it is academic or authoritative content rather than project engineering nomenclature: rendered academic prose and headings, sample metadata values, bibliography data, official UFC/ABNT names or wording, literal Portuguese output under test, and identifiers owned by an upstream dependency at an explicit integration boundary.
+## Permanent enforcement
 
-An English engineering file may contain Portuguese academic content. For example, `template/frontmatter/acknowledgments.tex` may contain acknowledgments in Portuguese and `template/chapters/1-introduction.tex` may render `\section{Introdução}`.
+`tests/checks/engineering_language.py` is the permanent static enforcement surface. It also protects canonical English v3 profile/API identifiers and rejects retired Portuguese technical identifiers in active machine/runtime contracts.
 
-Project-owned comments and diagnostics must be English. Rendered academic labels may be Portuguese when required by the document profile.
+A gate that reports zero violations while known project-owned Portuguese technical diagnostics remain is itself defective. The correct response is to strengthen the detector and translate the diagnostics, not weaken the policy or reclassify project-owned technical messages as academic content.
 
-Historical engineering identifiers belong to Git history, tags, releases, issues, pull requests, and certified SHAs. The active v3 tree does not retain history directories, compatibility artifacts, duplicate old/new documentation, or dormant files solely for future convenience. Closed migration mappings may remain only when a permanent enforcement gate or the active reconstruction control plane consumes them; otherwise they are consolidated or removed.
+## Core Corrections hardening — accepted
 
-Permanent enforcement must be scoped so valid Brazilian academic content is not confused with engineering nomenclature. R2-B5 made `tests/checks/v3_api_residual.py` part of the permanent static contract, and R3-A proved that current enforcement is incomplete: path checks do not yet police all project-owned technical comments/diagnostics/UI, and some machine scenario/profile identifiers remain Portuguese. R3-B1 repaired behavior-affecting front-matter generator/observer defects needed for truthful evidence but deliberately did not absorb the broader language-policy cleanup. R3-B4/#255 closed the scoped permanent language-enforcement repair through PR #264 at `59b2bce7fa2eb1ef6cbb418ca12d8c08b9339390`. R3-B2/#253 closed at `1d9e6373ed674fb7503b968b3e852e4be5fc14ea` without broadening language policy. R3-B3/#254 closed through PR #262 at `fbee5bd329f98a389c2880932af40547c8d1674e`, expanding removed-v2 residual enforcement across 302 behavior-relevant sources while keeping deliberate negative literals narrowly annotated. R3-B4/#255 is DONE. The permanent B4 contract reports zero Portuguese project-owned technical diagnostics, zero retired profile IDs, zero closed unconsumed contracts and two live `release/v3-api-migration.json` consumers. The current B4 residual baseline is 305 sources (134 LaTeX + 171 engineering), retained test/check reachability is 148/148 with zero orphans, and rendered academic Portuguese remains explicitly protected. R3-B5/#256 is DONE through PR #268 at `d90a675a844724c33a5727d8d980027c46291eb0`. V3-R4/#267 certification run `33855800767` passed on `c79f3c73f1d51a30175e8259269504d029442a1c` without changing this policy or the closed public runtime API; R4 closed through PR #273 at `0b0f5d989163dc6b1429feeb2d8a7c66988647bb`. V3-R5/#272 completed without broadening this policy, changing the certified runtime, or introducing new engineering-language debt and closed through PR #276 at `908ee2eb2ec04c030d74a9a4b146fba38fb745a9`. V3-A1/#275 is DONE through PR #281 at `7a7562d23e8bf6c92abb635718639d617a2ed6ff` and V3-A2/#280 is ACTIVE. The canonical profile identifier is `scientific-article`; `article.*` remains the project-owned rule namespace. Runtime implementation must keep these engineering identifiers in English while official/academic Portuguese stays protected. The final invariants remain: zero Portuguese project-owned technical paths, zero removed Portuguese project API in runtime or behavior-affecting engineering generators, zero Portuguese project-owned technical comments or diagnostics/UI, zero canonical examples using removed API, and zero archive/museum directories in the active tree. Rendered academic Portuguese, official wording, bibliography data, literal output under test, and genuine upstream identifiers remain protected content/boundaries.
+The hardening cycle intentionally ran fail-closed. Successive stronger scans exposed previously missed project-owned Portuguese/mixed diagnostics in bibliography/multivolume, algorithm numbering, catalog-card, duplex/vector and back-matter integration surfaces. The project corrected the complete related diagnostic surfaces rather than suppressing individual matches.
 
-## V3-A1 article identifiers
+Accepted checkpoint: `edeb14b7a96d1cab3ad9551701087ddf4dff059a`.
 
-The article rule namespace is `article.*` and the canonical profile name is `scientific-article`. These are project-owned English identifiers. Portuguese remains in the academic requirements and rendered content where appropriate. Historical Portuguese machine IDs are discovery evidence only and are not restored.
+Acceptance evidence:
+
+- Static contract `33972111694`: SUCCESS;
+- full Linux integration `33972111696`: SUCCESS;
+- permanent audit: `ENGINEERING-LANGUAGE-EVIDENCE status=PASS portuguese_technical_diagnostics=0`;
+- phase governance remained PASS;
+- academic/rendered Portuguese literals remained intentionally preserved.
+
+Historical failed Static runs are retained as evidence that the stronger detector and phase-governance contract stopped hidden debt rather than masking it.
+
+## Scope boundary
+
+Allowed Portuguese includes rendered academic prose/headings, bibliography and metadata data values, official wording/names, literal Portuguese output intentionally exercised by a test, and genuine upstream identifiers at a documented integration boundary.
+
+Project-owned comments, diagnostics, CLI/UI messages, test failure messages, machine-state nomenclature and current technical documentation remain English. Broad stopword-style matching is not an acceptable substitute for diagnostic/context-aware detection.
+
+## Canonical identifiers and phase authority
+
+The canonical article profile identifier is `scientific-article`; `article.*` is the project-owned rule namespace. Historical Portuguese profile identifiers are not restored.
+
+Current phase/status authority comes from `release/v3-roadmap.json`, `docs/HANDOFF-V3.0.0.md`, and `docs/ROADMAP-V3.0.0.md`. Historical opaque stage names may appear only as Git/issue/PR evidence and do not define current work.
+
+## Ongoing guard
+
+Engineering-language hardening is closed as a correction batch, but the detector remains a permanent regression guard. Any new material advance that reintroduces a project-owned Portuguese technical diagnostic fails closed and must be corrected before acceptance.

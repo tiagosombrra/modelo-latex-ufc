@@ -24,7 +24,7 @@ for engine in pdflatex lualatex; do
     grep -vF -e 'Class abntexto-ufc Warning: Times New Roman not found; using TeX Gyre Termes' || true)
   if [ -n "$warnings" ]; then
     printf '%s\n' "$warnings"
-    echo "$job: warning ou overflow não reconhecido."
+    echo "$job: unrecognized warning or overflow."
     exit 1
   fi
 
@@ -55,7 +55,7 @@ expected_markers = {
 for number, marker in expected_markers.items():
     line = line_for(marker)
     if not re.search(rf'(^|\s){number}:\s+\S', line):
-        raise SystemExit(f'linha {number} without prefixo/content expected: {line!r}')
+        raise SystemExit(f'line {number} is missing the expected prefix/content: {line!r}')
 
 numbered = {}
 for line in lines:
@@ -63,24 +63,24 @@ for line in lines:
     if match:
         number = int(match.group(2))
         if number in numbered:
-            raise SystemExit(f'número de linha duplicado {number}: {line!r}')
+            raise SystemExit(f'duplicate line number {number}: {line!r}')
         numbered[number] = match.group(3).strip()
 
 if sorted(numbered) != list(range(1, 9)):
-    raise SystemExit(f'sequência numerada incompleta: {sorted(numbered)}')
+    raise SystemExit(f'incomplete numbered sequence: {sorted(numbered)}')
 for number, content in numbered.items():
     if not content:
-        raise SystemExit(f'linha numerada vazia: {number}')
+        raise SystemExit(f'numbered line is empty: {number}')
 
 if 'end if' not in numbered[5].lower():
-    raise SystemExit(f'linha 5 deveria tornar EndIf visível: {numbered[5]!r}')
+    raise SystemExit(f'line 5 should render EndIf visibly: {numbered[5]!r}')
 if 'end while' not in numbered[7].lower():
-    raise SystemExit(f'linha 7 deveria tornar EndWhile visível: {numbered[7]!r}')
+    raise SystemExit(f'line 7 should render EndWhile visibly: {numbered[7]!r}')
 
 for marker in ('SEM-NUMERO-A', 'SEM-NUMERO-B'):
     line = line_for(marker)
     if re.search(r'(^|\s)\d+:\s+', line):
-        raise SystemExit(f'linha deveria estar sem numeração: {line!r}')
+        raise SystemExit(f'line should be unnumbered: {line!r}')
 PY
 
 done

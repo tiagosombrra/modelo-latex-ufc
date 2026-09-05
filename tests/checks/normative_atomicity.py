@@ -74,8 +74,8 @@ def main() -> None:
         fail("summary word count and keyword presence must be separate rules")
 
     keep_count = sum(entry["status"] == "keep-atomic" for entry in entries.values())
-    if keep_count + target_count != 100:
-        fail("N3 contract must resolve to exactly 100 atomic rules")
+    if keep_count + target_count != 98:
+        fail("N3 contract must resolve to exactly 98 atomic rules after object-title migration")
 
     print(
         "Normative atomicity plan passed: "

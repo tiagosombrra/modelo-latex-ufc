@@ -1,6 +1,6 @@
 \ProvidesFile{abntexto-ufc/objects.def}[2026/08/21 UFC figures, tables, code and algorithms]
 
-% Keep object titles within the real object width and use the reduced normative size.
+% Keep upper object identification/title within the real object width at body size.
 \makeatletter
 \providecommand{\ufcObjectLegendHook}{}
 \def\printlegendbox{\hfil\vtop{%
@@ -15,7 +15,7 @@
   \else
     \hsize=\wd0
   \fi
-  \abntsmall\singlesp
+  \normalsize\singlesp
   \ufcObjectLegendHook
   \hangfrom{\legendlabel}\savedlegend\strut
 }}

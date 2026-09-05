@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-08-22",
+  "reviewed_at": "2026-09-05",
   "purpose": "N3 atomic rule contract. Expected values inherit from standards/catalog.json unless explicitly supplied for a dimension stated in the parent requirement. Aggregated parent rules remain temporary compatibility aliases for existing validators.",
   "keep_atomic": [
     "page.a4",
@@ -115,16 +115,6 @@
         }
       },
       {
-        "id": "font.size.reduced.illustration-caption",
-        "requirement": "O tamanho reduzido adotado para títulos de ilustrações é 10 pt.",
-        "keys": [
-          "pt"
-        ],
-        "applicability": {
-          "context": "illustration-caption"
-        }
-      },
-      {
         "id": "font.size.reduced.illustration-source",
         "requirement": "O tamanho reduzido adotado para fontes de ilustrações é 10 pt.",
         "keys": [
@@ -132,16 +122,6 @@
         ],
         "applicability": {
           "context": "illustration-source"
-        }
-      },
-      {
-        "id": "font.size.reduced.table-caption",
-        "requirement": "O tamanho reduzido adotado para títulos de tabelas é 10 pt.",
-        "keys": [
-          "pt"
-        ],
-        "applicability": {
-          "context": "table-caption"
         }
       },
       {

@@ -25,9 +25,9 @@ check_log() {
 }
 
 for engine in pdflatex lualatex; do
-  job="postextuais-$engine"
+  job="backmatter-$engine"
   cleanup_job "$job"
-  echo "Validating pós-textuais with $engine..."
+  echo "Validating back matter with $engine..."
 
   "$engine" -jobname="$job" -interaction=nonstopmode -halt-on-error -file-line-error "$modern" > /tmp/abntexto-ufc-post.log 2>&1 || {
     cat /tmp/abntexto-ufc-post.log
@@ -77,7 +77,7 @@ positions = []
 for marker in markers:
     pos = fold.find(marker)
     if pos < 0:
-        raise SystemExit(f'{job}: element pós-textual missing: {marker}')
+        raise SystemExit(f'{job}: back-matter element missing: {marker}')
     positions.append(pos)
 if positions != sorted(positions):
     raise SystemExit(f'{job}: incorrect back-matter order: {list(zip(markers, positions))}')
@@ -88,7 +88,7 @@ for content in (
     'documento institucional externo',
 ):
     if content.casefold() not in fold:
-        raise SystemExit(f'{job}: content pós-textual missing: {content}')
+        raise SystemExit(f'{job}: back-matter content missing: {content}')
 
 if 'capítulo' in fold or 'capitulo' in fold:
     raise SystemExit(f'{job}: chapter-based structure reappeared.')
@@ -96,11 +96,11 @@ PY
 
   for marker in 'Referências' 'Glossário' 'Questionário produzido pelo autor' 'Documento institucional externo' 'Remissivo'; do
     grep -Fqi "$marker" "$job.toc" || {
-      echo "$job: item pós-textual missing from the table of contents: $marker"
+      echo "$job: back-matter item missing from the table of contents: $marker"
       cat "$job.toc"
       exit 1
     }
   done
 done
 
-echo 'Pós-textuais gate completed.'
+echo 'Back-matter gate completed.'

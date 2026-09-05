@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-08-22",
+  "reviewed_at": "2026-09-05",
   "purpose": "N3 compatibility-parent map to atomic normative requirements. It contains identifiers only; normative values remain in catalog.json or the atomic contract.",
   "statuses": [
     "keep-atomic",
@@ -56,9 +56,7 @@
         "font.size.reduced.footnote",
         "font.size.reduced.pagination",
         "font.size.reduced.catalog-card",
-        "font.size.reduced.illustration-caption",
         "font.size.reduced.illustration-source",
-        "font.size.reduced.table-caption",
         "font.size.reduced.table-source"
       ]
     },
